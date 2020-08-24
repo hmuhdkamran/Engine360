@@ -1,0 +1,12 @@
+{
+  "data": {
+        "connectionString": "Server=;Port=;UserId=;Password=pgc@123;Database=PostrgresDb;"
+    },
+  "tokenProvider": {
+      "tokenExpiration": "630",
+      "tokenSecurityKey": "startrekkingacrosstheuniverseonthestarshipenterpriseundercaptainkirk",
+      "tokenSecurityAlgorithm": "HS256",
+      "tokenIssuer": "localhost",
+      "tokenAudience": "cms360app"
+    }
+}

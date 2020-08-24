@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 
 class Roles(models.Model):
@@ -28,7 +29,7 @@ class RolesRoutesMap(models.Model):
 
 
 class User(models.Model):
-    UserId = models.UUIDField(null=False, primary_key=True)
+    UserId = models.UUIDField(null=False, primary_key=True, default=uuid.uuid4)
     Username = models.TextField(null=False, unique=True)
     DisplayName = models.TextField(null=False)
     Language = models.TextField(null=False)
@@ -40,10 +41,28 @@ class User(models.Model):
 class UsersRolesMap(models.Model):
     UserRoleMapId = models.UUIDField(null=False, primary_key=True)
     UserId = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Fk_UsersRolesMap_UserId')
-    RoleRouteMapId = models.ForeignKey(RolesRoutesMap, on_delete=models.CASCADE, related_name='Fk_UsersRolesMap_RoleRouteMapId')
+    RoleRouteMapId = models.ForeignKey(RolesRoutesMap, on_delete=models.CASCADE,
+                                       related_name='Fk_UsersRolesMap_RoleRouteMapId')
     Status = models.BooleanField(null=False)
 
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['UserId', 'RoleRouteMapId'], name='Uk_UsersRolesMap_UserId_RoleRouteMapId')
         ]
+
+
+class UserSession(models.Model):
+    SessionId = models.UUIDField(null=False, primary_key=True, default=uuid.uuid4)
+    UserId = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    Expiry = models.DateTimeField()
+    IsValid = models.BooleanField(default=True)
+    ChallengeCheck = models.TextField(default='')
+    CreatedAt = models.DateTimeField(auto_now_add=True)
+
+
+class LogEntryForException(models.Model):
+    Exception = models.TextField(null=False)
+    RequestUrl = models.TextField(default='')
+    UserAgent = models.TextField(default='')
+    IpAddress = models.TextField(default='')
+    CreatedAt = models.DateTimeField(auto_now_add=True)
