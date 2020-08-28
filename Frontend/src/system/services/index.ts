@@ -1,0 +1,1 @@
+export { IStoreService, StoreService } from './store-service';
