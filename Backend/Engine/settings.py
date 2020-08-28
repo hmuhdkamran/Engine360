@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Models',
-    'Api'
+    'Api',
+    'Middleware'
 ]
 
 MIDDLEWARE = [
@@ -71,28 +71,45 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Engine.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+SettingInfo = os.path.join(os.path.dirname(os.getcwd()), 'Backend', 'Engine', 'project_settings.json')
+SettingInfo = open(SettingInfo, 'r')
+SettingInfo = json.loads(SettingInfo.read())
+SettingInfo = SettingInfo['data']['connectionString']
+SettingInfo = SettingInfo.split(';')
+SettingInfoDic = {}
 
-#
-# DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': '',
-#             'USER': '',
-#             'PASSWORD': '',
-#             'HOST': '',
-#             'PORT': '5432',
-#         }
-#     }
+for x in SettingInfo:
+    if x != '':
+        x = x.split('=')
+        SettingInfoDic[x[0]] = x[1]
+
+HostName = SettingInfoDic['Server']
+UserId = SettingInfoDic['UserId']
+Password = SettingInfoDic['Password']
+Database = SettingInfoDic['Database']
+Port = SettingInfoDic['Port']
+
+if HostName and UserId and Password and Database and Port:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': Database,
+            'USER': UserId,
+            'PASSWORD': Password,
+            'HOST': HostName,
+            'PORT': Port,
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -112,7 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -125,7 +141,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
