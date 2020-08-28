@@ -11,7 +11,7 @@ class RolesRoutesMap(models.Model):
     Status = models.BooleanField(default=False)
 
     class Meta:
-        db_table: '"Role"."RolesRoutesMap"'
+        db_table = '"Role"."RolesRoutesMap"'
         constraints = [
             models.UniqueConstraint(fields=['RoleId', 'RouteId'], name='Uk_RolesRoutesMap_RoleId_RouteId')
         ]
