@@ -11,7 +11,6 @@ export class AuthenticationService extends StoreService {
       }
 
       login(credentials: ICredential) {
-        debugger;
         let onSuccess = (token: IAccessToken) => {
           if (token) {
             TokenHelper.setAccessToken(token.access_token);
