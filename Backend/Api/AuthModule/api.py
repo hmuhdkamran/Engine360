@@ -33,7 +33,7 @@ def register(request):
 
     hash_pass, salt = Hashing().generate_password(password)
 
-    user_ = User.objects.create(Username=email, Password=password, DisplayName=name, Language=language,
+    user_ = User.objects.create(Username=email, Password=hash_pass, DisplayName=name, Language=language,
                                 Salt=salt, Status=True)
 
     data = JWTClass().create_user_session(user_)
@@ -48,7 +48,7 @@ def login(request):
 
     user_ = User.objects.filter(Username=email).last()
     if user_:
-        if Hashing().validate_password(password, user_.Salt, user_.Password):
+        if Hashing()._compare_stored_hash(password, user_.Salt, user_.Password):
             data = JWTClass().create_user_session(user_)
             return SuccessResponse(data=data).return_response_object()
 

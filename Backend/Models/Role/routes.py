@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 
+
 class Routes(models.Model):
     RouteId = models.UUIDField(null=False, primary_key=True)
     RouteName = models.TextField(null=False, unique=True)

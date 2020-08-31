@@ -3,6 +3,7 @@ import uuid
 
 from .user import User
 
+
 class UserSession(models.Model):
     SessionId = models.UUIDField(null=False, primary_key=True, default=uuid.uuid4)
     UserId = models.ForeignKey(User, on_delete=models.CASCADE, null=False)

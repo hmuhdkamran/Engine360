@@ -1,39 +1,37 @@
-import base64
-import hashlib
-import os
+import hashlib, binascii, os, json
 
 
 class Hashing:
     def __init__(self):
-        self.salt_ln = 16
+        self.Path = self.get_settings_file()
+        self.salt_ln = self.get_salt_length()
+        self.password_algo = 'sha512'
+
+    @staticmethod
+    def get_settings_file():
+        return os.path.join(os.path.dirname(os.getcwd()), 'Backend', 'Engine', 'project_settings.json')
+
+    def get_salt_length(self):
+        config_file = open(self.Path, 'r')
+        config_file = json.loads(config_file.read())
+        salt_length = config_file['saltLength']
+        return salt_length
 
     def _create_new_salt(self):
-        return os.urandom(self.salt_ln)
+        return hashlib.sha256(os.urandom(self.salt_ln)).hexdigest().encode('ascii')
 
     def _create_new_hash(self, password, salt):
-        password = password.encode()
-        hash_object = hashlib.sha256(password + salt)
-        hash_b64 = base64.b64encode(hash_object.digest() + salt)
-        return hash_b64
+        pwd_hash = hashlib.pbkdf2_hmac(self.password_algo, password.encode('utf-8'), salt, 100000)
+        pwd_hash = binascii.hexlify(pwd_hash)
+        pwd_hash = (salt + pwd_hash).decode('ascii')
+        return pwd_hash
 
     def _compare_stored_hash(self, password, salt, old_hash):
         salt = salt.encode()
-        re_hash = self._create_new_hash(password, salt)
-        if re_hash.decode() == old_hash.decode():
-            return True
-        else:
-            return False
+        pwd_hash = self._create_new_hash(password, salt)
+        return pwd_hash == old_hash
 
     def generate_password(self, password):
-        return password, 'salt'
-        # salt_ = self._create_new_salt()
-        # password_ = self._create_new_hash(password, salt_)
-        # return password_, salt_
-
-    def get_old_salt(self, input_hash):
-        return base64.b64decode(input_hash)[-self.salt_ln:]
-
-    def validate_password(self, password, salt, hash_pasword):
-        if hash_pasword == password:
-            return True
-        return False
+        salt_ = self._create_new_salt()
+        password_ = self._create_new_hash(password, salt_)
+        return password_, salt_.decode()

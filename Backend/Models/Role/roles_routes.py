@@ -4,6 +4,7 @@ import uuid
 from .roles import Roles
 from .routes import Routes
 
+
 class RolesRoutesMap(models.Model):
     RoleRouteMapId = models.UUIDField(null=False, primary_key=True)
     RoleId = models.ForeignKey(Roles, on_delete=models.CASCADE, related_name='Fk_RolesRoutesMap_RoleId')

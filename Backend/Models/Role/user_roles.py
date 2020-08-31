@@ -4,10 +4,12 @@ import uuid
 from .user import User
 from .roles_routes import RolesRoutesMap
 
+
 class UsersRolesMap(models.Model):
     UserRoleMapId = models.UUIDField(null=False, primary_key=True)
     UserId = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Fk_UsersRolesMap_UserId')
-    RoleRouteMapId = models.ForeignKey(RolesRoutesMap, on_delete=models.CASCADE, related_name='Fk_UsersRolesMap_RoleRouteMapId')
+    RoleRouteMapId = models.ForeignKey(RolesRoutesMap, on_delete=models.CASCADE,
+                                       related_name='Fk_UsersRolesMap_RoleRouteMapId')
     Status = models.BooleanField(null=False)
 
     class Meta:
