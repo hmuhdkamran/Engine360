@@ -15,6 +15,16 @@ export interface IUser {
     timeZoneId?: string;
 };
 
+export interface ICredential {
+    username: string;
+    password: string;
+};
+
+export interface IAccessToken {
+    access_token: string;
+    expires_on: number;
+};
+
 export const DefaultUser = <IUser>{
     authenticated: false,
     claims: {},

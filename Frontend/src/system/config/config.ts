@@ -12,12 +12,12 @@ const addProp = (obj: {}, propName: string, value: string) => {
     Object.defineProperty(obj, propName, {
         enumerable: false,
         get: () => {
-            return '//' + window.location.host + value;
+            return 'http://127.0.0.1:5000' + value;
         }
     });
 };
 
-addProp(uri, 'auth', '/auth/');
+addProp(uri, 'auth', '/api/auth/');
 addProp(uri, 'content', '/api/content/');
 addProp(uri, 'site', '');
 addProp(uri, 'services', '/api/');

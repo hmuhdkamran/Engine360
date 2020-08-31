@@ -2,7 +2,7 @@
   <div class="login-box">
     <div class="login-logo">
       <a href="#">
-        <b>Million</b> Mart
+        <b>Engine</b> 360
       </a>
     </div>
     <router-view />
