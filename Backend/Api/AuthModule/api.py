@@ -13,7 +13,7 @@ DRequests = DecoratorHandler()
 @DRequests.rest_api_call(['POST'])
 def register(request):
     data = json.loads(request.body.decode('utf-8'))
-    email = data['email'].strip().lower()
+    email = data['username'].strip().lower()
     password = data['password'].strip()
     confirm_password = data['confirm_password'].strip()
     name = data['name'].strip()

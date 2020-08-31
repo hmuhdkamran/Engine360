@@ -1,15 +1,12 @@
 import hashlib, binascii, os, json
+from Engine.settings import ConfigFile
 
 
 class Hashing:
     def __init__(self):
-        self.Path = self.get_settings_file()
+        self.Path = ConfigFile
         self.salt_ln = self.get_salt_length()
         self.password_algo = 'sha512'
-
-    @staticmethod
-    def get_settings_file():
-        return os.path.join(os.path.dirname(os.getcwd()), 'Backend', 'Engine', 'project_settings.json')
 
     def get_salt_length(self):
         config_file = open(self.Path, 'r')

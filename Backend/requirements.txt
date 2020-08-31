@@ -7,3 +7,4 @@ Django==3.0
 PyJWT==1.7.1
 pytz==2020.1
 sqlparse==0.3.1
+psycopg2-binary

@@ -73,7 +73,8 @@ WSGI_APPLICATION = 'Engine.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-SettingInfo = os.path.join(os.path.dirname(os.getcwd()), 'Backend', 'Engine', 'project_settings.json')
+ConfigFile = os.path.join(os.path.dirname(os.getcwd()), 'Engine360' ,'Backend', 'Engine', 'project_settings.json')
+SettingInfo = ConfigFile
 SettingInfo = open(SettingInfo, 'r')
 SettingInfo = json.loads(SettingInfo.read())
 SettingInfo = SettingInfo['data']['connectionString']
