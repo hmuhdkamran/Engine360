@@ -1,13 +1,17 @@
 {
   "data": {
-        "connectionString": "Server=127.0.0.1;Port=5432;UserId=postgres;Password=combine;Database=Engine360;"
-    },
+    "connectionString": "Server=127.0.0.1;Port=5432;UserId=postgres;Password=newpassword;Database=postgres;"
+  },
   "tokenProvider": {
-      "tokenExpiration": "630",
-      "tokenSecurityKey": "startrekkingacrosstheuniverseonthestarshipenterpriseundercaptainkirk",
-      "tokenSecurityAlgorithm": "HS256",
-      "tokenIssuer": "localhost",
-      "tokenAudience": "cms360app"
-    },
-  "saltLength": 32
+    "tokenExpiration": "630",
+    "tokenSecurityKey": "startrekkingacrosstheuniverseonthestarshipenterpriseundercaptainkirk",
+    "tokenSecurityAlgorithm": "HS256",
+    "tokenIssuer": "localhost",
+    "tokenAudience": "cms360app"
+  },
+  "saltLength": 32,
+  "BackendEngine": {
+    "port": "8000",
+    "host": "127.0.0.1"
+  }
 }

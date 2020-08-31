@@ -5,16 +5,13 @@ import jwt
 import uuid
 from datetime import timedelta
 from Models.models import *
+from Engine.settings import ConfigFile
 
 
 class JWTClass:
     def __init__(self):
-        self.Path = self.get_settings_file()
+        self.Path = ConfigFile
         self.TokenProvider = self.get_jwt_information()
-
-    @staticmethod
-    def get_settings_file():
-        return os.path.join(os.path.dirname(os.getcwd()), 'Backend', 'Engine', 'project_settings.json')
 
     @staticmethod
     def generate_specification():
