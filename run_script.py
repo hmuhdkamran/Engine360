@@ -1,6 +1,7 @@
 import os, json
+from sys import platform
 
-python_path = '/usr/bin/python3.6'
+python_path = ''
 
 
 class BackendRunScript:
@@ -33,18 +34,25 @@ class BackendRunScript:
     def create_venv_if_not_exists(self):
         if not os.path.isdir(self.venv_path):
             os.system("pip install virtualenv")
-            venv_path_cmd = "virtualenv --python=" + self.python_path + " " + self.venv_path
+            if self.python_path:
+                venv_path_cmd = "virtualenv --python=" + self.python_path + " " + self.venv_path
+            else:
+                venv_path_cmd = "virtualenv " + self.venv_path
             os.system(venv_path_cmd)
 
     def install_backend_requirements(self):
-        venv_file_pip = os.path.join(self.venv_path, 'bin', 'pip')
+        if platform == "linux" or platform == "linux2":
+            venv_file_pip = os.path.join(self.venv_path, 'bin', 'pip')
+        else:
+            venv_file_pip = os.path.join(self.venv_path, 'Scripts', 'pip')
         os.system(venv_file_pip + ' install -r ' + self.requirement_path)
 
     def run_server_command(self):
         venv_file_python = os.path.join(self.venv_path, 'bin', 'python')
-        while True:
-            os.system(
-                venv_file_python + " " + self.manage_py_path + " runserver " + self.backend_host + ":" + self.backend_port)
+        os.system("lsof -t -i tcp:8000 | xargs kill -9")
+        os.system(
+            venv_file_python + " " + self.manage_py_path + " runserver " + self.backend_host + ":" + self.backend_port)
+        input()
 
 
 if __name__ == '__main__':

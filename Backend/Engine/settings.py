@@ -70,10 +70,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Engine.wsgi.application'
 
+from pathlib import Path
+
+path = Path(BASE_DIR)
+path = path.parent
+
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-ConfigFile = os.path.join(os.path.dirname(os.getcwd()), 'Engine360' ,'Backend', 'Engine', 'project_settings.json')
+ConfigFile = os.path.join(BASE_DIR, 'Engine', 'project_settings.json')
 SettingInfo = ConfigFile
 SettingInfo = open(SettingInfo, 'r')
 SettingInfo = json.loads(SettingInfo.read())
