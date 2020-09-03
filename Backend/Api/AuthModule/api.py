@@ -47,6 +47,7 @@ def login(request):
     password = data['password']
 
     user_ = User.objects.filter(Username=email).last()
+    print ("Any thing")
     if user_:
         if Hashing()._compare_stored_hash(password, user_.Salt, user_.Password):
             data = JWTClass().create_user_session(user_)

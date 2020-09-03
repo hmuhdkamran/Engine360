@@ -84,12 +84,6 @@ class BackendRunScript:
         while True:
             pass
 
-        # os.system("lsof -t -i tcp:8000 | xargs kill -9")
-        # os.system("lsof -t -i tcp:8080 | xargs kill -9")
-        # os.system(
-        #     venv_file_python + " " + self.manage_py_path + " runserver " + self.backend_host + ":" + self.backend_port)
-
-
 if __name__ == '__main__':
     args = sys.argv[1:]
     if len(args):

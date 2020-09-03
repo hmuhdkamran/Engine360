@@ -2,6 +2,7 @@
   "data": {
     "connectionString": "Server=127.0.0.1;Port=5432;UserId=postgres;Password=combine;Database=Engine360;"
   },
+  "claimsNamespace": "https://cms360/claims/",
   "tokenProvider": {
     "tokenExpiration": "630",
     "tokenSecurityKey": "startrekkingacrosstheuniverseonthestarshipenterpriseundercaptainkirk",
@@ -10,8 +11,12 @@
     "tokenAudience": "cms360app"
   },
   "saltLength": 32,
-  "BackendEngine": {
+  "backendEngine": {
     "port": "5000",
+    "host": "127.0.0.1"
+  },
+  "frontEngine": {
+    "port": "5001",
     "host": "127.0.0.1"
   }
 }
