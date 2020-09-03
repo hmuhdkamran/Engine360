@@ -23,10 +23,14 @@ class BackendRunScript:
     def decode_backed_host_and_port(self):
         config_file = open(self.config_file, 'r')
         config_file = json.loads(config_file.read())
-        backend_engine_values = config_file['BackendEngine']
+        backend_engine_values = config_file['backendEngine']
+        frontend_engine_values = config_file['frontEngine']
 
         self.backend_host = backend_engine_values['host']
         self.backend_port = backend_engine_values['port']
+
+        self.frontend_host = backend_engine_values['host']
+        self.frontend_port = backend_engine_values['port']
 
         if not self.backend_host:
             self.backend_host = "127.0.0.1"
@@ -83,6 +87,7 @@ class BackendRunScript:
 
         while True:
             pass
+
 
 if __name__ == '__main__':
     args = sys.argv[1:]

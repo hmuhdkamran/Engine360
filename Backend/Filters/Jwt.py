@@ -27,19 +27,29 @@ class JWTClass:
         date_ = datetime.datetime.now() + timedelta(minutes=int(self.TokenProvider['tokenExpiration']))
         return date_, date_.timestamp()
 
-    def get_jwt_model(self, email, claims, roles, expiry_date, specification):
+    @staticmethod
+    def convert_date_time_to_timestamp(date_time):
+        return int(date_time.timestamp())
+
+    def get_jwt_model(self, user_session, claims, roles, expiry_date, specification):
         return {
-            'audience': self.TokenProvider['tokenAudience'],
+            'aud': self.TokenProvider['tokenAudience'],
             'expiry': expiry_date,
-            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress': email,
-            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name': claims,
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid': str(user_session.UserId.UserId),
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress': user_session.UserId.Username,
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name': [user_session.UserId.Username,
+                                                                           user_session.UserId.DisplayName],
             'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role': roles,
-            'issuer': self.TokenProvider['tokenIssuer'],
-            'specification': specification
+            'https://cms360/claims/culturename': user_session.UserId.Language,
+            'iss': self.TokenProvider['tokenIssuer'],
+            'specification': specification,
+            'sub': user_session.UserId.Username,
+            'exp': self.convert_date_time_to_timestamp(user_session.Expiry),
+            'nbf': self.convert_date_time_to_timestamp(user_session.CreatedAt)
         }
 
-    def generate_jwt_token(self, email, claims, roles, expiry_date, specification):
-        data_ = self.get_jwt_model(email, claims, roles, expiry_date, specification)
+    def generate_jwt_token(self, user_session, claims, roles, expiry_date, specification):
+        data_ = self.get_jwt_model(user_session, claims, roles, expiry_date, specification)
         encoded_token = jwt.encode(data_, self.TokenProvider['tokenSecurityKey'],
                                    algorithm=self.TokenProvider['tokenSecurityAlgorithm'])
         encoded_token = encoded_token.decode('utf-8')
@@ -83,5 +93,5 @@ class JWTClass:
     def create_user_session(self, user):
         date, timestamp = self.get_expiry_date()
         specification = str(self.generate_specification())
-        UserSession.objects.create(UserId=user, Expiry=date, ChallengeCheck=specification)
-        return self.generate_jwt_token(user.Username, [], self.get_user_roles(user), timestamp, specification)
+        user_session = UserSession.objects.create(UserId=user, Expiry=date, ChallengeCheck=specification)
+        return self.generate_jwt_token(user_session, [], self.get_user_roles(user), timestamp, specification)

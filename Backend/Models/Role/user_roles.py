@@ -7,9 +7,10 @@ from .roles_routes import RolesRoutesMap
 
 class UsersRolesMap(models.Model):
     UserRoleMapId = models.UUIDField(null=False, primary_key=True)
-    UserId = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Fk_UsersRolesMap_UserId')
+    UserId = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Fk_UsersRolesMap_UserId',
+                               db_column='UserId')
     RoleRouteMapId = models.ForeignKey(RolesRoutesMap, on_delete=models.CASCADE,
-                                       related_name='Fk_UsersRolesMap_RoleRouteMapId')
+                                       related_name='Fk_UsersRolesMap_RoleRouteMapId', db_column='RoleRouteMapId')
     Status = models.BooleanField(null=False)
 
     class Meta:
