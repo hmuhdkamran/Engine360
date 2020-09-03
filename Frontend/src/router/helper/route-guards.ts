@@ -58,8 +58,6 @@ export function RouteGuards(options: IRouteGuardOptions): NavigationGuard {
             } else {
                 next(options.loginRouteName);
             }
-
-            next(sendTo);
         } else if (
             to.name !== options.verifyRouteName &&
             to.matched.some(r => verifyCheck(user, r.meta))
