@@ -57,7 +57,7 @@ class BackendRunScript:
 
     def run_front_end(self):
         os.chdir(self.frontend_path)
-        os.system("npm serve ")
+        os.system("npm run serve ")
 
     def run_back_end(self):
         if platform == "linux" or platform == "linux2":
