@@ -19,7 +19,6 @@ class BackendRunScript:
         self.create_venv_if_not_exists()
         self.install_backend_requirements()
         self.install_npm()
-        self.workers = 2
 
     def decode_backed_host_and_port(self):
         config_file = open(self.config_file, 'r')
@@ -53,11 +52,11 @@ class BackendRunScript:
 
     def install_npm(self):
         os.chdir(self.frontend_path)
-        os.system("npm install ")
+        os.system("npm install")
 
     def run_front_end(self):
         os.chdir(self.frontend_path)
-        os.system("npm run serve ")
+        os.system("npm run serve")
 
     def run_back_end(self):
         if platform == "linux" or platform == "linux2":
@@ -67,9 +66,17 @@ class BackendRunScript:
         os.system(
             venv_file_python + " " + self.manage_py_path + " runserver " + self.backend_host + ":" + self.backend_port)
 
+    def run_back_end2(self):
+        if platform == "linux" or platform == "linux2":
+            venv_file_python = os.path.join(self.venv_path, 'bin', 'python')
+        else:
+            venv_file_python = os.path.join(self.venv_path, 'Scripts', 'python')
+        os.system(
+            venv_file_python + " " + self.manage_py_path + " runserver " + self.backend_host + ":8003")
+
     def run_server_command(self):
-        front_end_thread = threading.Thread(target=self.run_front_end())
-        back_end_thread = threading.Thread(target=self.run_back_end())
+        front_end_thread = threading.Thread(target=self.run_front_end)
+        back_end_thread = threading.Thread(target=self.run_back_end)
 
         front_end_thread.start()
         back_end_thread.start()
