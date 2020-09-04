@@ -11,6 +11,7 @@ class RolesRoutesMap(models.Model):
                                db_column='RoleId')
     RouteId = models.ForeignKey(Routes, on_delete=models.CASCADE, related_name='Fk_RolesRoutesMap_RouteId',
                                 db_column='RouteId')
+    Operation = models.TextField(db_column='Operation')
     Status = models.BooleanField(default=False)
 
     class Meta:

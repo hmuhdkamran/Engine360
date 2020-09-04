@@ -7,6 +7,8 @@ from .Role.roles import Roles
 from .Role.roles_routes import RolesRoutesMap
 from .Role.user_roles import UsersRolesMap
 from .Role.user_session import UserSession
+from .Role.queries import Queries
+
 
 class LogEntryForException(models.Model):
     Exception = models.TextField(null=False)

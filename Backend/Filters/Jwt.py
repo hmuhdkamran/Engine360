@@ -6,6 +6,7 @@ import uuid
 from datetime import timedelta
 from Models.models import *
 from Engine.settings import ConfigFile
+from django.db import connection
 
 
 class JWTClass:
@@ -48,8 +49,8 @@ class JWTClass:
             'nbf': self.convert_date_time_to_timestamp(user_session.CreatedAt)
         }
 
-    def generate_jwt_token(self, user_session, claims, roles, expiry_date, specification):
-        data_ = self.get_jwt_model(user_session, claims, roles, expiry_date, specification)
+    def generate_jwt_token(self, user_session, roles, expiry_date, specification):
+        data_ = self.get_jwt_model(user_session, [], roles, expiry_date, specification)
         encoded_token = jwt.encode(data_, self.TokenProvider['tokenSecurityKey'],
                                    algorithm=self.TokenProvider['tokenSecurityAlgorithm'])
         encoded_token = encoded_token.decode('utf-8')
@@ -87,11 +88,19 @@ class JWTClass:
 
     @staticmethod
     def get_user_roles(user):
-        ur = UsersRolesMap.objects.filter(UserId=user)
-        return [{'UserRoleMapId': x.id} for x in ur]
+        role_query = Queries.objects.filter(FullName='GenerateRole').last()
+        if role_query:
+            with connection.cursor() as cursor:
+                query = role_query.Description.format(user.UserId)
+                cursor.execute(query)
+                col_desc = cursor.description
+                column_names = [col[0] for col in col_desc]
+                rows = cursor.fetchall()
+                return [dict(zip(column_names, row)) for row in rows]
+        return []
 
     def create_user_session(self, user):
         date, timestamp = self.get_expiry_date()
         specification = str(self.generate_specification())
         user_session = UserSession.objects.create(UserId=user, Expiry=date, ChallengeCheck=specification)
-        return self.generate_jwt_token(user_session, [], self.get_user_roles(user), timestamp, specification)
+        return self.generate_jwt_token(user_session, self.get_user_roles(user), timestamp, specification)
