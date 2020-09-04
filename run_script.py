@@ -29,8 +29,8 @@ class BackendRunScript:
         self.backend_host = backend_engine_values['host']
         self.backend_port = backend_engine_values['port']
 
-        self.frontend_host = backend_engine_values['host']
-        self.frontend_port = backend_engine_values['port']
+        self.frontend_host = frontend_engine_values['host']
+        self.frontend_port = frontend_engine_values['port']
 
         if not self.backend_host:
             self.backend_host = "127.0.0.1"
@@ -60,7 +60,7 @@ class BackendRunScript:
 
     def run_front_end(self):
         os.chdir(self.frontend_path)
-        os.system("npm run serve")
+        os.system("npm run serve -- --port " + self.frontend_port)
 
     def run_back_end(self):
         if platform == "linux" or platform == "linux2":
