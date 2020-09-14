@@ -2,10 +2,7 @@ import { Store } from 'vuex';
 import { IPayload, IStatusBarData, PayloadMessageTypes, StoreTypes } from '../models';
 
 import { PayloadMapper } from '../config';
-
-export interface IStoreService {
-    exec: <T>(cb: Promise<{}>) => Promise<IPayload<T>>
-}
+import { IStoreService } from '.';
 
 interface IProcessPayloadOptions<T> {
     timeout?: number,

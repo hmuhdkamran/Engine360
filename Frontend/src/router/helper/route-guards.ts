@@ -37,37 +37,21 @@ export function RouteGuards(options: IRouteGuardOptions): NavigationGuard {
     let fn = async (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
 
         let claimsHelper: ClaimHelper;
-        let sendTo: RouteLocation = {
-            fullPath: '',
-            hash: '',
-            matched: null,
-            meta: null,
-            name: '',
-            params: null,
-            path: '',
-            query: null,
-            redirectedFrom: null
-        };
-
         let user = options.resolveUser() || TokenHelper.parseUserToken(TokenHelper.getAccessToken());
 
         if (to.matched.some(r => routeCheck(user, claimsHelper, r.meta))) {
-
             if (user.authenticated && to.meta.claims) {
                 next(options.forbiddenRouteName);
             } else {
                 next(options.loginRouteName);
             }
-        } else if (
-            to.name !== options.verifyRouteName &&
-            to.matched.some(r => verifyCheck(user, r.meta))
-        ) {
+        } else if (to.name !== options.verifyRouteName && to.matched.some(r => verifyCheck(user, r.meta))) {
             next(options.loginRouteName);
-            window.scrollTo(0, 0);
         } else {
             next();
-            window.scrollTo(0, 0);
         }
+
+        window.scrollTo(0, 0);
     };
     return fn;
 }

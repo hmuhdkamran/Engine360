@@ -5,9 +5,18 @@ import { UseAxios, TokenHelper } from '@/system/config';
 import { useRouter } from 'vue-router';
 import { RootStoreTypes } from '@/system/models/store/types';
 import { RouteNames } from '@/router/helper';
+import { Loader, TokenStatus } from "@/components"
+import Store from '@/system/store/app';
 
-@Options({ name: "ApplicationView" })
+@Options({
+  name: "ApplicationView",
+  components: { "loader": Loader, "token-status": TokenStatus },
+  computed: {
+    isLoading: () => Store.state.common.isLoading
+  }
+})
 export default class ApplicationView extends Vue {
+
   created() {
     let router = useRouter();
     UseAxios();

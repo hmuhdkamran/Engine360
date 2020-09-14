@@ -1,26 +1,15 @@
 <template>
-  <div class="content-wrapper">
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Advanced Form</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item">
-                <a href="#">Home</a>
-              </li>
-              <li class="breadcrumb-item active">Advanced Form</li>
-            </ol>
-          </div>
-        </div>
+  <!--begin::Content-->
+  <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+      <!--begin::Container-->
+      <div class="container">
+        <slot />
       </div>
-    </section>
-    <div class="content">
-      <div class="container-fluid">
-        <router-view />
-      </div>
+      <!--end::Container-->
     </div>
+    <!--end::Entry-->
   </div>
+  <!--end::Content-->
 </template>

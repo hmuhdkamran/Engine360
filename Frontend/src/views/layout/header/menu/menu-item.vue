@@ -1,20 +1,30 @@
 <template>
-  <li :class="isOpened === true ? 'nav-item menu-open' : 'nav-item'" v-if="hasChildrens">
-    <a href="javascript:;" class="nav-link" @click="isOpened = !isOpened">
-      <i :class="'nav-icon ' + userMenu.icon"></i>
-      <p>
-        {{userMenu.name}}
-        <i class="right fas fa-angle-left"></i>
-      </p>
+  <li v-if="hasChildrens">
+    <a href="javascript:;" :class="{'menu-toggle':isOpened}" @click="isOpened = !isOpened">
+      <span class="icon is-small">
+        <i :class="userMenu.icon"></i>
+      </span>
+      <span>{{userMenu.name}}</span>
+      <span class="icon is-small is-angle">
+        <i class="fa fa-angle-down"></i>
+      </span>
     </a>
-    <ul class="nav nav-treeview" :style="isOpened === true ? 'display: block;' : 'display: none;'">
-      <menu-item v-for="link in userMenu.children" :userMenu="link" :key="link.name" />
-    </ul>
+    <div
+      v-if="isOpened"
+      class="menu-subcontainer"
+      :style="{height: (userMenu.children.length * 30 + 10) + 'px'}"
+    >
+      <ul>
+        <menu-item v-for="link in userMenu.children" :userMenu="link" :key="link.name" />
+      </ul>
+    </div>
   </li>
   <li class="nav-item" v-else>
-    <router-link :to="userMenu.route" class="nav-link" v-if="userMenu.isVisable">
-      <i class="far fa-circle nav-icon"></i>
-      <p>{{userMenu.name}}</p>
+    <router-link :to="userMenu.route" v-if="userMenu.isVisable">
+      <span class="icon is-small">
+        <i :class="userMenu.icon"></i>
+      </span>
+      <span v-text="userMenu.name"></span>
     </router-link>
   </li>
 </template>

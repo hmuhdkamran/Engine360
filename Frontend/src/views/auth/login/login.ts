@@ -15,6 +15,11 @@ export default class LoginView extends Vue {
 
   }
 
+  mounted() {
+    this.user.username = 'admin@c3.com';
+    this.user.password = 'P@ssw0rd';
+  }
+
   login(): void {
 
     var credentials: ICredential = {
@@ -26,12 +31,10 @@ export default class LoginView extends Vue {
       .then((value) => this.$store.dispatch(StoreTypes.updateUser, value))
       .then(() => this.$store.dispatch(StoreTypes.updateStatusBar, null))
       .then(() => this.$router.push("/home"))
-      .catch(() => {
-        this.$store.dispatch(StoreTypes.updateStatusBar, {
-          text: 'Invalid UserName or Password',
-          title: 'Error',
-          messageTypeId: PayloadMessageTypes.error
-        })
-      });
+      .catch(() => this.$store.dispatch(StoreTypes.updateStatusBar, {
+        text: 'Invalid UserName or Password',
+        title: 'Error',
+        messageTypeId: PayloadMessageTypes.error
+      }));
   }
 }

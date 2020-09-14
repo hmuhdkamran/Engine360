@@ -1,8 +1,17 @@
-export { KeyValue } from './key-value';
-export { PayloadMessageTypes } from './message';
-export { default as GlobalConfig } from './config';
+import { KeyValue } from './key-value';
+import { PayloadMessageTypes } from './message';
+import { default as GlobalConfig } from './config';
 
-export { PayloadMapper } from './payload-mapper';
-export { TokenHelper } from './token-helper';
+import { PayloadMapper } from './payload-mapper';
+import { TokenHelper } from './token-helper';
 
-export { UseAxios } from './axios';
+import { UseAxios } from './axios';
+
+export {
+    KeyValue,
+    PayloadMessageTypes,
+    GlobalConfig,
+    PayloadMapper,
+    TokenHelper,
+    UseAxios
+};

@@ -3,6 +3,7 @@ import ApplicationView from "./views/app.vue";
 import "./registerServiceWorker";
 
 import { PageView } from "@/components";
+
 import router from './router';
 import Store from './system/store/app';
 
