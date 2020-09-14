@@ -1,8 +1,4 @@
-from django.urls import path
-from .AuthModule.api import *
+from .AuthModule.auth_routes import urlpatterns as auth_url_patters
 
-urlpatterns = [
-    path('auth/login', login),
-    path('auth/register', register),
-    path('auth/logout', logout)
-]
+urlpatterns = []
+urlpatterns += auth_url_patters

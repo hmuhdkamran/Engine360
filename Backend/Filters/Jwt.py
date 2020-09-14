@@ -32,7 +32,7 @@ class JWTClass:
     def convert_date_time_to_timestamp(date_time):
         return int(date_time.timestamp())
 
-    def get_jwt_model(self, user_session, claims, roles, expiry_date, specification):
+    def get_jwt_model(self, user_session, roles, expiry_date):
         return {
             'aud': self.TokenProvider['tokenAudience'],
             'expiry': expiry_date,
@@ -43,14 +43,13 @@ class JWTClass:
             'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role': roles,
             'https://cms360/claims/culturename': user_session.UserId.Language,
             'iss': self.TokenProvider['tokenIssuer'],
-            'specification': specification,
             'sub': user_session.UserId.Username,
             'exp': self.convert_date_time_to_timestamp(user_session.Expiry),
             'nbf': self.convert_date_time_to_timestamp(user_session.CreatedAt)
         }
 
-    def generate_jwt_token(self, user_session, roles, expiry_date, specification):
-        data_ = self.get_jwt_model(user_session, [], roles, expiry_date, specification)
+    def generate_jwt_token(self, user_session, roles, expiry_date):
+        data_ = self.get_jwt_model(user_session, roles, expiry_date)
         encoded_token = jwt.encode(data_, self.TokenProvider['tokenSecurityKey'],
                                    algorithm=self.TokenProvider['tokenSecurityAlgorithm'])
         encoded_token = encoded_token.decode('utf-8')
@@ -68,9 +67,8 @@ class JWTClass:
                                        algorithm=[self.TokenProvider['tokenSecurityAlgorithm']])
             expiry_ = datetime.datetime.fromtimestamp(decoded_token['expiry'])
             if expiry_ > datetime.datetime.now():
-                us_ = UserSession.objects.filter(ChallengeCheck=decoded_token['specification'], IsValid=True,
-                                                 Expiry=expiry_).last()
-                return self.response_user_id(us_)
+                user = User.objects.get(UserId=decoded_token['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid'])
+                return self.response_user_id(user)
             return False
         except Exception as e:
             return False
@@ -80,8 +78,7 @@ class JWTClass:
             decoded_token = jwt.decode(token, self.TokenProvider['tokenSecurityKey'],
                                        algorithm=[self.TokenProvider['tokenSecurityAlgorithm']])
             expiry_ = datetime.datetime.fromtimestamp(decoded_token['expiry'])
-            UserSession.objects.filter(ChallengeCheck=decoded_token['specification'],
-                                       Expiry=expiry_).update(IsValid=False)
+            UserSession.objects.filter(Expiry=expiry_).update(IsValid=False)
             return True
         except Exception as e:
             return False
@@ -101,6 +98,5 @@ class JWTClass:
 
     def create_user_session(self, user):
         date, timestamp = self.get_expiry_date()
-        specification = str(self.generate_specification())
-        user_session = UserSession.objects.create(UserId=user, Expiry=date, ChallengeCheck=specification)
-        return self.generate_jwt_token(user_session, self.get_user_roles(user), timestamp, specification)
+        user_session = UserSession.objects.create(UserId=user, Expiry=date, ChallengeCheck='')
+        return self.generate_jwt_token(user_session, self.get_user_roles(user), timestamp)
