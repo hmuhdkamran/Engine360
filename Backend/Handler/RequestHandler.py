@@ -9,7 +9,7 @@ from Models.models import LogEntryForException
 
 class RequestHandler:
     def __init__(self, request):
-        self.request = request
+        self.request = request.request
         self.user_agent = self.request.META.get('HTTP_USER_AGENT', '')
         self.requested_url = self.request.META.get('HTTP_REFERER', '')
         self.ip_address = self.get_client_ip_address_from_request()
@@ -48,13 +48,13 @@ class DecoratorHandler:
             @wraps(view)
             def wrapper(request, *args, **kwargs):
                 request_handler = RequestHandler(request)
-                if request.method in allowed_method_list:
+                if request.request.method in allowed_method_list:
                     if is_authenticated:
-                        user_ = self.authentication_level(request, authentication_level)
+                        user_ = self.authentication_level(request.request, authentication_level)
                         if user_:
                             request.user = user_
                             try:
-                                response = view(request, *args, **kwargs)
+                                response = view(request.request, *args, **kwargs)
                             except Exception as e:
                                 request_handler._exception_log_entry(e)
                                 response = FailureResponse().return_response_object()
