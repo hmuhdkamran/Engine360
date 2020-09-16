@@ -1,6 +1,8 @@
 import json
 
 from django.views import View
+from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet
 
 from Filters.Jwt import JWTClass
 from Handler.PasswordHandler import Hashing
@@ -8,14 +10,16 @@ from Handler.RequestHandler import DecoratorHandler, FailureResponse, SuccessRes
 from Helper.Constants import *
 from Helper.Utils import *
 from Models.models import User
+from django.utils.decorators import classonlymethod
+from functools import update_wrapper
 
 DRequests = DecoratorHandler()
 
 
-class Authentication(View):
+class Authentication(GenericViewSet):
 
-    @DRequests.rest_api_call(['PUT'])
-    def put(self, request):
+    # @DRequests.rest_api_call(['PUT'])
+    def post_login(self, request):
         data = json.loads(request.body.decode('utf-8'))
         email = data['username'].lower().strip()
         password = data['password']
@@ -29,8 +33,8 @@ class Authentication(View):
         return FailureResponse(text='Username or password is incorrect.',
                                status_code=BAD_REQUEST_CODE).return_response_object()
 
-    @DRequests.rest_api_call(['POST'])
-    def post(self, request):
+    # @DRequests.rest_api_call(['POST'])
+    def post_register(self, request):
         data = json.loads(request.body.decode('utf-8'))
         email = data['username'].strip().lower()
         password = data['password'].strip()
@@ -57,3 +61,7 @@ class Authentication(View):
 
         data = JWTClass().create_user_session(user_)
         return SuccessResponse(data=data, text='User Created Successfully!').return_response_object()
+
+
+class UserViewSet(APIView):
+    pass
