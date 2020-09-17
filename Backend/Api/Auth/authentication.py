@@ -1,10 +1,8 @@
-import asyncio
 import json
 
 from asgiref.sync import sync_to_async
-from django.utils.decorators import classonlymethod
-from django.views.generic import View
 
+from Api.BaseClass import BaseClass
 from Filters.Jwt import JWTClass
 from Handler.PasswordHandler import Hashing
 from Handler.RequestHandler import DecoratorHandler, FailureResponse, SuccessResponse
@@ -15,16 +13,8 @@ from Models.models import User
 DRequests = DecoratorHandler()
 
 
-class BaseClass(View):
-
-    @classonlymethod
-    def as_view(cls, actions=None, **initkwargs):
-        view = super().as_view(**initkwargs)
-        view._is_coroutine = asyncio.coroutines._is_coroutine
-        return view
-
-
 class LoginClass(BaseClass):
+
     @sync_to_async
     def get_user_obj(self, email):
         return User.objects.filter(Username=email).last()
