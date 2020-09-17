@@ -4,6 +4,5 @@ from .business import *
 
 urlpatterns = [
     path('setup/get_business', BusinessClass.as_view()),
-    path('setup/get_new_business', BusinessClass.as_view()),
     path('setup/post_business', BusinessClass.as_view()),
 ]
