@@ -15,14 +15,11 @@ DRequests = DecoratorHandler()
 class BusinessClass(BaseClass):
 
     def dispatch(self, request, *args, **kwargs):
-        if request.method.lower() == "get":
-            if request.path.split('/')[-1] == 'get_business':
-                return self.get_business(request)
-            return self.http_method_not_allowed
-        elif request.method.lower() == "post":
-            if request.path.split('/')[-1] == 'post_business':
-                return self.post_business(request)
-            return self.http_method_not_allowed
+        if request.method.lower() == "get" and request.path.split('/')[-1] == 'get_business':
+            return self.get_business(request)
+        elif request.method.lower() == "post" and request.path.split('/')[-1] == 'post_business':
+            return self.post_business(request)
+
         return super().dispatch(request, *args, **kwargs)
 
     @sync_to_async
