@@ -5,7 +5,7 @@
         <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
             <h3 class="font-weight-bold m-0">User Profile
             <small class="text-muted font-size-sm ml-2">12 messages</small></h3>
-            <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
                 <i class="ki ki-close icon-xs text-muted"></i>
             </a>
         </div>
@@ -19,10 +19,10 @@
                     <i class="symbol-badge bg-success"></i>
                 </div>
                 <div class="d-flex flex-column">
-                    <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">James Jones</a>
+                    <a href="javascript:;" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{displayName}}</a>
                     <div class="text-muted mt-1">Application Developer</div>
                     <div class="navi mt-2">
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <span class="navi-link p-0 pb-2">
                                 <span class="navi-icon mr-1">
                                     <span class="svg-icon svg-icon-lg svg-icon-primary">
@@ -37,10 +37,10 @@
                                         <!--end::Svg Icon-->
                                     </span>
                                 </span>
-                                <span class="navi-text text-muted text-hover-primary">jm@softplus.com</span>
+                                <span class="navi-text text-muted text-hover-primary">{{email}}</span>
                             </span>
                         </a>
-                        <a href="#" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5">Sign Out</a>
+                        <a href="javascript:;" class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5" @click="userService.logout()">Sign Out</a>
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@
                         </span>
                     </span>
                     <div class="d-flex flex-column flex-grow-1 mr-2">
-                        <a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Another purpose persuade</a>
+                        <a href="javascript:;" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Another purpose persuade</a>
                         <span class="text-muted font-size-sm">Due in 2 Days</span>
                     </div>
                     <span class="font-weight-bolder text-warning py-1 font-size-lg">+28%</span>
@@ -201,7 +201,7 @@
                         </span>
                     </span>
                     <div class="d-flex flex-column flex-grow-1 mr-2">
-                        <a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Would be to people</a>
+                        <a href="javascript:;" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Would be to people</a>
                         <span class="text-muted font-size-sm">Due in 2 Days</span>
                     </div>
                     <span class="font-weight-bolder text-success py-1 font-size-lg">+50%</span>
@@ -223,7 +223,7 @@
                         </span>
                     </span>
                     <div class="d-flex flex-column flex-grow-1 mr-2">
-                        <a href="#" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">Purpose would be to persuade</a>
+                        <a href="javascript:;" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">Purpose would be to persuade</a>
                         <span class="text-muted font-size-sm">Due in 2 Days</span>
                     </div>
                     <span class="font-weight-bolder text-danger py-1 font-size-lg">-27%</span>
@@ -247,7 +247,7 @@
                         </span>
                     </span>
                     <div class="d-flex flex-column flex-grow-1 mr-2">
-                        <a href="#" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">The best product</a>
+                        <a href="javascript:;" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">The best product</a>
                         <span class="text-muted font-size-sm">Due in 2 Days</span>
                     </div>
                     <span class="font-weight-bolder text-info py-1 font-size-lg">+8%</span>

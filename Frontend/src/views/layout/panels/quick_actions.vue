@@ -8,7 +8,7 @@
         <small class="text-muted font-size-sm ml-2">finance &amp; reports</small>
       </h3>
       <a
-        href="#"
+        href="javascript:;"
         class="btn btn-xs btn-icon btn-light btn-hover-primary"
         id="kt_quick_actions_close"
       >
@@ -22,7 +22,7 @@
         <!--begin::Item-->
         <div class="col-6">
           <a
-            href="#"
+            href="javascript:;"
             class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
           >
             <span class="svg-icon svg-icon-3x svg-icon-primary m-0">
@@ -57,7 +57,7 @@
         <!--begin::Item-->
         <div class="col-6">
           <a
-            href="#"
+            href="javascript:;"
             class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
           >
             <span class="svg-icon svg-icon-3x svg-icon-primary m-0">
@@ -94,7 +94,7 @@
         <!--begin::Item-->
         <div class="col-6">
           <a
-            href="#"
+            href="javascript:;"
             class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
           >
             <span class="svg-icon svg-icon-3x svg-icon-primary m-0">
@@ -129,7 +129,7 @@
         <!--begin::Item-->
         <div class="col-6">
           <a
-            href="#"
+            href="javascript:;"
             class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
           >
             <span class="svg-icon svg-icon-3x svg-icon-primary m-0">
@@ -168,7 +168,7 @@
         <!--begin::Item-->
         <div class="col-6">
           <a
-            href="#"
+            href="javascript:;"
             class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
           >
             <span class="svg-icon svg-icon-3x svg-icon-primary m-0">
@@ -202,7 +202,7 @@
         <!--begin::Item-->
         <div class="col-6">
           <a
-            href="#"
+            href="javascript:;"
             class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
           >
             <span class="svg-icon svg-icon-3x svg-icon-primary m-0">
@@ -237,7 +237,7 @@
         <!--begin::Item-->
         <div class="col-6">
           <a
-            href="#"
+            href="javascript:;"
             class="btn btn-block btn-light btn-hover-primary text-dark-50 text-center py-10 px-5"
           >
             <span class="svg-icon svg-icon-3x svg-icon-primary m-0">

@@ -2,7 +2,7 @@
 <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile header-mobile-fixed">
         <!--begin::Logo-->
-        <a href="#">
+        <a href="javascript:;">
             <img alt="Logo" src="@/assets/logo.png" class="logo-default max-h-30px" />
         </a>
         <!--end::Logo-->

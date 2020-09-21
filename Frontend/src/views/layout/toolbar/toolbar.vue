@@ -9,7 +9,7 @@
       title="Check out more demos"
       data-placement="right"
     >
-      <a class="btn btn-sm btn-icon btn-bg-light btn-text-success btn-hover-success" href="#">
+      <a class="btn btn-sm btn-icon btn-bg-light btn-text-success btn-hover-success" href="javascript:;">
         <i class="flaticon2-drop"></i>
       </a>
     </li>
@@ -46,7 +46,7 @@
     >
       <a
         class="btn btn-sm btn-icon btn-bg-light btn-text-danger btn-hover-danger"
-        href="#"
+        href="javascript:;"
         data-toggle="modal"
         data-target="#kt_chat_modal"
       >

@@ -15,7 +15,7 @@
                 </li>
             </ul>
             <div class="offcanvas-close mt-n1 pr-5">
-                <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_panel_close">
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_panel_close">
                     <i class="ki ki-close icon-xs text-muted"></i>
                 </a>
             </div>
@@ -37,7 +37,7 @@
                                 </span>
                             </div>
                             <div class="d-flex flex-column flex-grow-1 mr-2">
-                                <a href="#" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">Top Authors</a>
+                                <a href="javascript:;" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">Top Authors</a>
                                 <span class="text-muted font-weight-bold">Most Successful Fellas</span>
                             </div>
                             <span class="btn btn-sm btn-light font-weight-bolder py-1 my-lg-0 my-2 text-dark-50">+82$</span>
@@ -51,7 +51,7 @@
                                 </span>
                             </div>
                             <div class="d-flex flex-column flex-grow-1 mr-2">
-                                <a href="#" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">Popular Authors</a>
+                                <a href="javascript:;" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">Popular Authors</a>
                                 <span class="text-muted font-weight-bold">Most Successful Fellas</span>
                             </div>
                             <span class="btn btn-sm btn-light font-weight-bolder my-lg-0 my-2 py-1 text-dark-50">+280$</span>
@@ -65,7 +65,7 @@
                                 </span>
                             </div>
                             <div class="d-flex flex-column flex-grow-1 mr-2">
-                                <a href="#" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">New Users</a>
+                                <a href="javascript:;" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">New Users</a>
                                 <span class="text-muted font-weight-bold">Most Successful Fellas</span>
                             </div>
                             <span class="btn btn-sm btn-light font-weight-bolder my-lg-0 my-2 py-1 text-dark-50">+4500$</span>
@@ -79,7 +79,7 @@
                                 </span>
                             </div>
                             <div class="d-flex flex-column flex-grow-1 mr-2">
-                                <a href="#" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">Active Customers</a>
+                                <a href="javascript:;" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">Active Customers</a>
                                 <span class="text-muted font-weight-bold">Most Successful Fellas</span>
                             </div>
                             <span class="btn btn-sm btn-light font-weight-bolder my-lg-0 my-2 py-1 text-dark-50">+4500$</span>
@@ -93,7 +93,7 @@
                                 </span>
                             </div>
                             <div class="d-flex flex-column flex-grow-1 mr-2">
-                                <a href="#" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">Bestseller Theme</a>
+                                <a href="javascript:;" class="font-weight-bolder text-dark-75 text-hover-primary font-size-lg mb-1">Bestseller Theme</a>
                                 <span class="text-muted font-weight-bold">Most Successful Fellas</span>
                             </div>
                             <span class="btn btn-sm btn-light font-weight-bolder my-lg-0 my-2 py-1 text-dark-50">+4500$</span>
@@ -120,7 +120,7 @@
                                 </span>
                             </span>
                             <div class="d-flex flex-column flex-grow-1 mr-2">
-                                <a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Another purpose persuade</a>
+                                <a href="javascript:;" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Another purpose persuade</a>
                                 <span class="text-muted font-size-sm">Due in 2 Days</span>
                             </div>
                             <span class="font-weight-bolder text-warning py-1 font-size-lg">+28%</span>
@@ -142,7 +142,7 @@
                                 </span>
                             </span>
                             <div class="d-flex flex-column flex-grow-1 mr-2">
-                                <a href="#" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Would be to people</a>
+                                <a href="javascript:;" class="font-weight-normal text-dark-75 text-hover-primary font-size-lg mb-1">Would be to people</a>
                                 <span class="text-muted font-size-sm">Due in 2 Days</span>
                             </div>
                             <span class="font-weight-bolder text-success py-1 font-size-lg">+50%</span>
@@ -164,7 +164,7 @@
                                 </span>
                             </span>
                             <div class="d-flex flex-column flex-grow-1 mr-2">
-                                <a href="#" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">Purpose would be to persuade</a>
+                                <a href="javascript:;" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">Purpose would be to persuade</a>
                                 <span class="text-muted font-size-sm">Due in 2 Days</span>
                             </div>
                             <span class="font-weight-bolder text-danger py-1 font-size-lg">-27%</span>
@@ -188,7 +188,7 @@
                                 </span>
                             </span>
                             <div class="d-flex flex-column flex-grow-1 mr-2">
-                                <a href="#" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">The best product</a>
+                                <a href="javascript:;" class="font-weight-normel text-dark-75 text-hover-primary font-size-lg mb-1">The best product</a>
                                 <span class="text-muted font-size-sm">Due in 2 Days</span>
                             </div>
                             <span class="font-weight-bolder text-info py-1 font-size-lg">+8%</span>
@@ -203,7 +203,7 @@
                     <!--begin::Nav-->
                     <div class="navi navi-icon-circle navi-spacer-x-0">
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -218,7 +218,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -233,7 +233,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -248,7 +248,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -263,7 +263,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -278,7 +278,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -293,7 +293,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -308,7 +308,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -323,7 +323,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -338,7 +338,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -353,7 +353,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -368,7 +368,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">
@@ -383,7 +383,7 @@
                         </a>
                         <!--end::Item-->
                         <!--begin::Item-->
-                        <a href="#" class="navi-item">
+                        <a href="javascript:;" class="navi-item">
                             <div class="navi-link rounded">
                                 <div class="symbol symbol-50 mr-3">
                                     <div class="symbol-label">

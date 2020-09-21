@@ -244,7 +244,7 @@
             <!--begin::Navigation-->
             <ul class="navi navi-hover py-5">
               <li class="navi-item">
-                <a href="#" class="navi-link">
+                <a href="javascript:;" class="navi-link">
                   <span class="navi-icon">
                     <i class="flaticon2-drop"></i>
                   </span>
@@ -252,7 +252,7 @@
                 </a>
               </li>
               <li class="navi-item">
-                <a href="#" class="navi-link">
+                <a href="javascript:;" class="navi-link">
                   <span class="navi-icon">
                     <i class="flaticon2-list-3"></i>
                   </span>
@@ -260,7 +260,7 @@
                 </a>
               </li>
               <li class="navi-item">
-                <a href="#" class="navi-link">
+                <a href="javascript:;" class="navi-link">
                   <span class="navi-icon">
                     <i class="flaticon2-rocket-1"></i>
                   </span>
@@ -271,7 +271,7 @@
                 </a>
               </li>
               <li class="navi-item">
-                <a href="#" class="navi-link">
+                <a href="javascript:;" class="navi-link">
                   <span class="navi-icon">
                     <i class="flaticon2-bell-2"></i>
                   </span>
@@ -279,7 +279,7 @@
                 </a>
               </li>
               <li class="navi-item">
-                <a href="#" class="navi-link">
+                <a href="javascript:;" class="navi-link">
                   <span class="navi-icon">
                     <i class="flaticon2-gear"></i>
                   </span>
@@ -288,7 +288,7 @@
               </li>
               <li class="navi-separator my-3"></li>
               <li class="navi-item">
-                <a href="#" class="navi-link">
+                <a href="javascript:;" class="navi-link">
                   <span class="navi-icon">
                     <i class="flaticon2-magnifier-tool"></i>
                   </span>
@@ -296,7 +296,7 @@
                 </a>
               </li>
               <li class="navi-item">
-                <a href="#" class="navi-link">
+                <a href="javascript:;" class="navi-link">
                   <span class="navi-icon">
                     <i class="flaticon2-bell-2"></i>
                   </span>

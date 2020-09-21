@@ -16,7 +16,7 @@
             <div class="card-toolbar">
               <div class="dropdown dropdown-inline">
                 <a
-                  href="#"
+                  href="javascript:;"
                   class="btn btn-clean btn-sm btn-icon"
                   data-toggle="dropdown"
                   aria-haspopup="true"
@@ -28,7 +28,7 @@
                   <!--begin::Navigation-->
                   <ul class="navi navi-hover py-5">
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-drop"></i>
                         </span>
@@ -36,7 +36,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-list-3"></i>
                         </span>
@@ -44,7 +44,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-rocket-1"></i>
                         </span>
@@ -55,7 +55,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-bell-2"></i>
                         </span>
@@ -63,7 +63,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-gear"></i>
                         </span>
@@ -72,7 +72,7 @@
                     </li>
                     <li class="navi-separator my-3"></li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-magnifier-tool"></i>
                         </span>
@@ -80,7 +80,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-bell-2"></i>
                         </span>
@@ -114,7 +114,7 @@
                   </div>
                   <div>
                     <a
-                      href="#"
+                      href="javascript:;"
                       class="font-size-h6 text-dark-75 text-hover-primary font-weight-bolder"
                     >Top Authors</a>
                     <div
@@ -137,7 +137,7 @@
                   </div>
                   <div>
                     <a
-                      href="#"
+                      href="javascript:;"
                       class="font-size-h6 text-dark-75 text-hover-primary font-weight-bolder"
                     >Bestsellers</a>
                     <div
@@ -160,7 +160,7 @@
                   </div>
                   <div>
                     <a
-                      href="#"
+                      href="javascript:;"
                       class="font-size-h6 text-dark-75 text-hover-primary font-weight-bolder"
                     >Top Engagement</a>
                     <div
@@ -192,7 +192,7 @@
               <div class="card-body d-flex flex-column">
                 <!--begin::Title-->
                 <a
-                  href="#"
+                  href="javascript:;"
                   class="text-dark-75 text-hover-primary font-weight-bolder font-size-h3"
                 >Properties</a>
                 <!--end::Title-->
@@ -210,7 +210,7 @@
                   <h3 class="font-weight-bolder">Create CRM Reports</h3>
                   <div class="text-dark-50 font-size-lg mt-2">Generate the latest CRM Report</div>
                 </div>
-                <a href="#" class="btn btn-primary font-weight-bold py-3 px-6">Start Now</a>
+                <a href="javascript:;" class="btn btn-primary font-weight-bold py-3 px-6">Start Now</a>
               </div>
               <!--end::Body-->
             </div>
@@ -231,7 +231,7 @@
                     Create SaaS
                     <br />Based Reports
                   </h3>
-                  <a href="#" class="btn btn-success font-weight-bold px-6 py-3">Create Report</a>
+                  <a href="javascript:;" class="btn btn-success font-weight-bold px-6 py-3">Create Report</a>
                 </div>
               </div>
               <!--end::Body-->
@@ -266,7 +266,7 @@
                     </span>
                     <div class="text-inverse-primary font-weight-bolder font-size-h2 mt-3">790</div>
                     <a
-                      href="#"
+                      href="javascript:;"
                       class="text-inverse-primary font-weight-bold font-size-lg mt-1"
                     >New Products</a>
                   </div>
@@ -306,7 +306,7 @@
                     </span>
                     <div class="text-dark font-weight-bolder font-size-h2 mt-3">8,600</div>
                     <a
-                      href="#"
+                      href="javascript:;"
                       class="text-muted text-hover-primary font-weight-bold font-size-lg mt-1"
                     >New Customers</a>
                   </div>
@@ -329,7 +329,7 @@
                     <br />With App
                   </h3>
                 </div>
-                <a href="#" class="btn btn-link btn-link-warning font-weight-bold">
+                <a href="javascript:;" class="btn btn-link btn-link-warning font-weight-bold">
                   Create Report
                   <span class="svg-icon svg-icon-lg svg-icon-warning">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg-->
@@ -384,7 +384,7 @@
             <div class="card-toolbar">
               <div class="dropdown dropdown-inline">
                 <a
-                  href="#"
+                  href="javascript:;"
                   class="btn btn-text-white btn-hover-white btn-sm btn-icon border-0"
                   data-toggle="dropdown"
                   aria-haspopup="true"
@@ -401,7 +401,7 @@
                       >Add new:</span>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-shopping-cart-1"></i>
                         </span>
@@ -409,7 +409,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-calendar-8"></i>
                         </span>
@@ -417,7 +417,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-graph-1"></i>
                         </span>
@@ -425,7 +425,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-rocket-1"></i>
                         </span>
@@ -433,7 +433,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-writing"></i>
                         </span>
@@ -495,7 +495,7 @@
               <span class="text-muted mt-3 font-weight-bold font-size-sm">More than 400+ new members</span>
             </h3>
             <div class="card-toolbar">
-              <a href="#" class="btn btn-success font-weight-bolder font-size-sm">
+              <a href="javascript:;" class="btn btn-success font-weight-bolder font-size-sm">
                 <span class="svg-icon svg-icon-md svg-icon-white">
                   <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Add-user.svg-->
                   <svg
@@ -571,7 +571,7 @@
                     </td>
                     <td class="pl-0">
                       <a
-                        href="#"
+                        href="javascript:;"
                         class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
                       >Brad Simmons</a>
                       <span class="text-muted font-weight-bold text-muted d-block">HTML, JS, ReactJS</span>
@@ -599,7 +599,7 @@
                       </div>
                     </td>
                     <td class="pr-0 text-right">
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/General/Settings-1.svg-->
                           <svg
@@ -626,7 +626,7 @@
                           <!--end::Svg Icon-->
                         </span>
                       </a>
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
                           <svg
@@ -656,7 +656,7 @@
                           <!--end::Svg Icon-->
                         </span>
                       </a>
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg-->
                           <svg
@@ -706,7 +706,7 @@
                     </td>
                     <td class="pl-0">
                       <a
-                        href="#"
+                        href="javascript:;"
                         class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
                       >Jessie Clarcson</a>
                       <span
@@ -736,7 +736,7 @@
                       </div>
                     </td>
                     <td class="pr-0 text-right">
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/General/Settings-1.svg-->
                           <svg
@@ -763,7 +763,7 @@
                           <!--end::Svg Icon-->
                         </span>
                       </a>
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
                           <svg
@@ -793,7 +793,7 @@
                           <!--end::Svg Icon-->
                         </span>
                       </a>
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg-->
                           <svg
@@ -843,7 +843,7 @@
                     </td>
                     <td class="pl-0">
                       <a
-                        href="#"
+                        href="javascript:;"
                         class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
                       >Lebron Wayde</a>
                       <span
@@ -873,7 +873,7 @@
                       </div>
                     </td>
                     <td class="pr-0 text-right">
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/General/Settings-1.svg-->
                           <svg
@@ -900,7 +900,7 @@
                           <!--end::Svg Icon-->
                         </span>
                       </a>
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
                           <svg
@@ -930,7 +930,7 @@
                           <!--end::Svg Icon-->
                         </span>
                       </a>
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg-->
                           <svg
@@ -980,7 +980,7 @@
                     </td>
                     <td class="pl-0">
                       <a
-                        href="#"
+                        href="javascript:;"
                         class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
                       >Natali Trump</a>
                       <span
@@ -1010,7 +1010,7 @@
                       </div>
                     </td>
                     <td class="pr-0 text-right">
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/General/Settings-1.svg-->
                           <svg
@@ -1037,7 +1037,7 @@
                           <!--end::Svg Icon-->
                         </span>
                       </a>
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Write.svg-->
                           <svg
@@ -1067,7 +1067,7 @@
                           <!--end::Svg Icon-->
                         </span>
                       </a>
-                      <a href="#" class="btn btn-icon btn-light btn-hover-primary btn-sm">
+                      <a href="javascript:;" class="btn btn-icon btn-light btn-hover-primary btn-sm">
                         <span class="svg-icon svg-icon-md svg-icon-primary">
                           <!--begin::Svg Icon | path:assets/media/svg/icons/General/Trash.svg-->
                           <svg
@@ -1125,7 +1125,7 @@
               </div>
             </div>
             <!--end::Info-->
-            <a href="#" class="text-dark font-weight-bolder text-hover-primary font-size-h4">
+            <a href="javascript:;" class="text-dark font-weight-bolder text-hover-primary font-size-h4">
               PitStop - Multiple Email
               <br />Generator
             </a>
@@ -1139,14 +1139,14 @@
             <!--begin::Team-->
             <div class="d-flex align-items-center mt-25">
               <!--begin::Pic-->
-              <a href="#" class="symbol symbol-45 symbol-light mr-3">
+              <a href="javascript:;" class="symbol symbol-45 symbol-light mr-3">
                 <div class="symbol-label">
                   <img src="assets/media/svg/avatars/001-boy.svg" class="h-75 align-self-end" alt />
                 </div>
               </a>
               <!--end::Pic-->
               <!--begin::Pic-->
-              <a href="#" class="symbol symbol-45 symbol-light mr-3">
+              <a href="javascript:;" class="symbol symbol-45 symbol-light mr-3">
                 <div class="symbol-label">
                   <img
                     src="assets/media/svg/avatars/028-girl-16.svg"
@@ -1157,7 +1157,7 @@
               </a>
               <!--end::Pic-->
               <!--begin::Pic-->
-              <a href="#" class="symbol symbol-45 symbol-light">
+              <a href="javascript:;" class="symbol symbol-45 symbol-light">
                 <div class="symbol-label">
                   <img src="assets/media/svg/avatars/024-boy-9.svg" class="h-75 align-self-end" alt />
                 </div>
@@ -1189,7 +1189,7 @@
               </div>
             </div>
             <!--end::Info-->
-            <a href="#" class="text-dark font-weight-bolder text-hover-primary font-size-h4">
+            <a href="javascript:;" class="text-dark font-weight-bolder text-hover-primary font-size-h4">
               Craft - ReactJS Admin
               <br />Theme
             </a>
@@ -1204,14 +1204,14 @@
             <!--begin::Team-->
             <div class="d-flex align-items-center mt-18">
               <!--begin::Pic-->
-              <a href="#" class="symbol symbol-45 symbol-light mr-3">
+              <a href="javascript:;" class="symbol symbol-45 symbol-light mr-3">
                 <div class="symbol-label">
                   <img src="assets/media/svg/avatars/001-boy.svg" class="h-75 align-self-end" alt />
                 </div>
               </a>
               <!--end::Pic-->
               <!--begin::Pic-->
-              <a href="#" class="symbol symbol-45 symbol-light mr-3">
+              <a href="javascript:;" class="symbol symbol-45 symbol-light mr-3">
                 <div class="symbol-label">
                   <img
                     src="assets/media/svg/avatars/028-girl-16.svg"
@@ -1222,14 +1222,14 @@
               </a>
               <!--end::Pic-->
               <!--begin: Pic-->
-              <a href="#" class="symbol symbol-45 symbol-light mr-3">
+              <a href="javascript:;" class="symbol symbol-45 symbol-light mr-3">
                 <div class="symbol-label">
                   <img src="assets/media/svg/avatars/024-boy-9.svg" class="h-75 align-self-end" alt />
                 </div>
               </a>
               <!--end::Pic-->
               <!--begin::Pic-->
-              <a href="#" class="symbol symbol-45 symbol-light">
+              <a href="javascript:;" class="symbol symbol-45 symbol-light">
                 <div class="symbol-label">
                   <img
                     src="assets/media/svg/avatars/005-girl-2.svg"
@@ -1265,7 +1265,7 @@
               </div>
             </div>
             <!--end::Info-->
-            <a href="#" class="text-dark font-weight-bolder text-hover-primary font-size-h4">
+            <a href="javascript:;" class="text-dark font-weight-bolder text-hover-primary font-size-h4">
               KT.com - High Quality
               <br />Templates
             </a>
@@ -1279,14 +1279,14 @@
             <!--begin::Team-->
             <div class="d-flex align-items-center mt-25">
               <!--begin::Pic-->
-              <a href="#" class="symbol symbol-45 symbol-light mr-3">
+              <a href="javascript:;" class="symbol symbol-45 symbol-light mr-3">
                 <div class="symbol-label">
                   <img src="assets/media/svg/avatars/001-boy.svg" class="h-75 align-self-end" alt />
                 </div>
               </a>
               <!--end::Pic-->
               <!--begin::Pic-->
-              <a href="#" class="symbol symbol-45 symbol-light mr-3">
+              <a href="javascript:;" class="symbol symbol-45 symbol-light mr-3">
                 <div class="symbol-label">
                   <img
                     src="assets/media/svg/avatars/028-girl-16.svg"
@@ -1297,7 +1297,7 @@
               </a>
               <!--end::Pic-->
               <!--begin::Pic-->
-              <a href="#" class="symbol symbol-45 symbol-light">
+              <a href="javascript:;" class="symbol symbol-45 symbol-light">
                 <div class="symbol-label">
                   <img src="assets/media/svg/avatars/024-boy-9.svg" class="h-75 align-self-end" alt />
                 </div>
@@ -1323,7 +1323,7 @@
             <div class="card-toolbar">
               <div class="dropdown dropdown-inline">
                 <a
-                  href="#"
+                  href="javascript:;"
                   class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
                   data-toggle="dropdown"
                   aria-haspopup="true"
@@ -1345,7 +1345,7 @@
                     </li>
                     <li class="navi-separator mb-3 opacity-70"></li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-shopping-cart-1"></i>
                         </span>
@@ -1353,7 +1353,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="navi-icon flaticon2-calendar-8"></i>
                         </span>
@@ -1364,7 +1364,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="navi-icon flaticon2-telegram-logo"></i>
                         </span>
@@ -1372,7 +1372,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="navi-icon flaticon2-new-email"></i>
                         </span>
@@ -1386,11 +1386,11 @@
                     <li class="navi-footer pt-5 pb-4">
                       <a
                         class="btn btn-light-primary font-weight-bolder btn-sm"
-                        href="#"
+                        href="javascript:;"
                       >More options</a>
                       <a
                         class="btn btn-clean font-weight-bold btn-sm d-none"
-                        href="#"
+                        href="javascript:;"
                         data-toggle="tooltip"
                         data-placement="right"
                         title="Click to learn more..."
@@ -1421,7 +1421,7 @@
                   <div class="d-flex flex-column align-items-cente py-2 w-75">
                     <!--begin::Title-->
                     <a
-                      href="#"
+                      href="javascript:;"
                       class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1"
                     >Daily Standup Meeting</a>
                     <!--end::Title-->
@@ -1457,7 +1457,7 @@
                   <div class="d-flex flex-column align-items-cente py-2 w-75">
                     <!--begin::Title-->
                     <a
-                      href="#"
+                      href="javascript:;"
                       class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1"
                     >Group Town Hall Meet-up with showcase</a>
                     <!--end::Title-->
@@ -1493,7 +1493,7 @@
                   <div class="d-flex flex-column align-items-cente py-2 w-75">
                     <!--begin::Title-->
                     <a
-                      href="#"
+                      href="javascript:;"
                       class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1"
                     >Next sprint planning and estimations</a>
                     <!--end::Title-->
@@ -1529,7 +1529,7 @@
                   <div class="d-flex flex-column align-items-cente py-2 w-75">
                     <!--begin::Title-->
                     <a
-                      href="#"
+                      href="javascript:;"
                       class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1"
                     >Sprint delivery and project deployment</a>
                     <!--end::Title-->
@@ -1565,7 +1565,7 @@
                   <div class="d-flex flex-column align-items-cente py-2 w-75">
                     <!--begin::Title-->
                     <a
-                      href="#"
+                      href="javascript:;"
                       class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1"
                     >Data analytics research showcase</a>
                     <!--end::Title-->
@@ -1605,7 +1605,7 @@
                 data-placement="left"
               >
                 <a
-                  href="#"
+                  href="javascript:;"
                   class="btn btn-clean btn-hover-light-primary btn-sm btn-icon"
                   data-toggle="dropdown"
                   aria-haspopup="true"
@@ -1617,7 +1617,7 @@
                   <!--begin::Navigation-->
                   <ul class="navi navi-hover py-5">
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-drop"></i>
                         </span>
@@ -1625,7 +1625,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-list-3"></i>
                         </span>
@@ -1633,7 +1633,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-rocket-1"></i>
                         </span>
@@ -1644,7 +1644,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-bell-2"></i>
                         </span>
@@ -1652,7 +1652,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-gear"></i>
                         </span>
@@ -1661,7 +1661,7 @@
                     </li>
                     <li class="navi-separator my-3"></li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-magnifier-tool"></i>
                         </span>
@@ -1669,7 +1669,7 @@
                       </a>
                     </li>
                     <li class="navi-item">
-                      <a href="#" class="navi-link">
+                      <a href="javascript:;" class="navi-link">
                         <span class="navi-icon">
                           <i class="flaticon2-bell-2"></i>
                         </span>
@@ -1727,7 +1727,7 @@
               <!--begin::Title-->
               <div class="d-flex flex-column flex-grow-1 mr-2">
                 <a
-                  href="#"
+                  href="javascript:;"
                   class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1"
                 >Group lunch celebration</a>
                 <span class="text-muted font-weight-bold">Due in 2 Days</span>
@@ -1775,7 +1775,7 @@
               <!--begin::Title-->
               <div class="d-flex flex-column flex-grow-1 mr-2">
                 <a
-                  href="#"
+                  href="javascript:;"
                   class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1"
                 >Home navigation optimization</a>
                 <span class="text-muted font-weight-bold">Due in 2 Days</span>
@@ -1820,7 +1820,7 @@
               <!--begin::Title-->
               <div class="d-flex flex-column flex-grow-1 mr-2">
                 <a
-                  href="#"
+                  href="javascript:;"
                   class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1"
                 >Rebrand strategy planning</a>
                 <span class="text-muted font-weight-bold">Due in 2 Days</span>
@@ -1879,7 +1879,7 @@
               <!--begin::Title-->
               <div class="d-flex flex-column flex-grow-1 mr-2">
                 <a
-                  href="#"
+                  href="javascript:;"
                   class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1"
                 >Product goals strategy meet-up</a>
                 <span class="text-muted font-weight-bold">Due in 2 Days</span>

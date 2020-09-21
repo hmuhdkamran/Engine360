@@ -1,5 +1,6 @@
 <template>
   <div>
+    <mobile-view />
     <div class="d-flex flex-column flex-root">
       <div class="d-flex flex-row flex-column-fluid page">
         <menu-view />

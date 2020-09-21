@@ -2,6 +2,7 @@ import { Options, Vue } from "vue-class-component";
 
 import MainView from './main/main.vue';
 
+import MobileView from "./header/mobile/mobile.vue";
 import MenuView from './header/menu/menu.vue';
 import ToolBar from './header/toolbar/toolbar.vue';
 import FooterView from './footer/footer.vue';
@@ -11,6 +12,7 @@ import { QuickActions, QuickPanel, QuickUser, QuickNotifications } from './panel
 @Options({
   name: "LayoutView",
   components: {
+    'mobile-view': MobileView,
     'main-view': MainView,
     'tool-bar': ToolBar,
 
@@ -31,6 +33,6 @@ export default class LayoutView extends Vue {
   mounted() {
     this.height = `${window.innerHeight}px;`;
 
-    document.body.className = "quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed aside-enabled aside-static";
+    document.body.className = "quick-panel-right demo-panel-right offcanvas-right header-fixed header-mobile-fixed subheader-enabled aside-enabled aside-static";
   }
 }
