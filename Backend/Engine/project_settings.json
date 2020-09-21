@@ -1,6 +1,6 @@
 {
   "data": {
-    "connectionString": "Server=127.0.0.1;Port=5432;UserId=postgres;Password=combine;Database=Engine360;"
+    "connectionString": "Server=127.0.0.1;Port=5432;UserId=postgres;Password=newpassword;Database=Engine360;"
   },
   "claimsNamespace": "https://cms360/claims/",
   "tokenProvider": {

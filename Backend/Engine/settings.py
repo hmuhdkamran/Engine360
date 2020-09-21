@@ -68,7 +68,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Engine.wsgi.application'
+# WSGI_APPLICATION = 'Engine.wsgi.application'
+ASGI_APPLICATION = 'Engine.asgi.application'
 
 from pathlib import Path
 
