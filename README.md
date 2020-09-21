@@ -29,7 +29,7 @@ Your development machine will need to have the following installed.
 * [Vue.js](https://v3.vuejs.org/guide/introduction.html) - Simple yet powerful library for building modern web interfaces
 * [Bootstrap](http://getbootstrap.com/) - Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
 * [Axios](https://github.com/mzabriskie/axios) - Promise based HTTP client for the browser and node.js
-* [Metronic] (https://keenthemes.com/metronic/) - Template to decore the application.
+* [Metronic](https://keenthemes.com/metronic/) - Template to decore the application.
 
 ## Authors
 
