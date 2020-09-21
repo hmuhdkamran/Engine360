@@ -12,7 +12,6 @@ from Models.models import User
 
 DRequests = DecoratorHandler()
 
-
 class LoginClass(BaseClass):
 
     @sync_to_async
