@@ -31,6 +31,10 @@ Your development machine will need to have the following installed.
 * [Axios](https://github.com/mzabriskie/axios) - Promise based HTTP client for the browser and node.js
 * [Metronic](https://keenthemes.com/metronic/) - Template to decore the application.
 
+## Simple Run
+
+* Just double click on run.bat, the it will trigger run_script.py. it install npm and python packages, also set virtual environment for python and run backend server also front end app.
+
 ## Authors
 
 * [H.Muhammad Kamran](https://www.facebook.com/hmuhdkamran)
