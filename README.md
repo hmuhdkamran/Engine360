@@ -38,6 +38,7 @@ Your development machine will need to have the following installed.
 ## Authors
 
 * [H.Muhammad Kamran](https://www.facebook.com/hmuhdkamran)
+* [Meharban Liaquat](https://www.facebook.com/meharbanliaquat)
 
 ## License
 
