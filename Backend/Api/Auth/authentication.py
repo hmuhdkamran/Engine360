@@ -11,7 +11,7 @@ from Handler.PasswordHandler import Hashing
 from Handler.RequestHandler import DecoratorHandler, FailureResponse, SuccessResponse
 from Helper.Constants import *
 from Helper.Utils import *
-from Models.models import User
+from Models.models import *
 
 DRequests = DecoratorHandler()
 
@@ -72,6 +72,12 @@ class Authentication(BaseClass):
         return User.objects.create(Username=email, Password=hash_pass, DisplayName=name, Language=language,
                                    Salt=salt, Status=status)
 
+    @sync_to_async
+    def create_user_role_entries(self, user):
+        roles_ = RolesRoutesMap.objects.filter(RoleId__FullName='user')
+        user_role_map = [UsersRolesMap(UserId=user, RoleRouteMapId=x, Status=True) for x in roles_]
+        UsersRolesMap.objects.bulk_create(user_role_map)
+
     async def register(self, request):
         data = json.loads(request.body.decode('utf-8'))
         email = data['username'].strip().lower()
@@ -95,6 +101,7 @@ class Authentication(BaseClass):
         hash_pass, salt = Hashing().generate_password(password)
 
         user_ = await self.create_a_new_user(email, hash_pass, name, language, salt, True)
+        await self.create_user_role_entries(user_)
 
         data = await self.get_user_token(user_)
         return SuccessResponse(data=data, text='User Created Successfully!').return_response_object()

@@ -71,6 +71,28 @@ class FailureResponse:
         }
         return respond(json.dumps(dict_), UNAUTHORIZED)
 
+    def bad_url_object(self):
+        dict_ = {
+            'data': {},
+            'message': {
+                "status": PAGE_NOT_FOUND,
+                "text": 'Page not found',
+                "title": self.title
+            }
+        }
+        return respond(json.dumps(dict_), UNAUTHORIZED)
+
+    def something_went_wrong(self):
+        dict_ = {
+            'data': {},
+            'message': {
+                "status": INTERNAL_SERVER_ERROR,
+                "text": 'Something went wrong',
+                "title": self.title
+            }
+        }
+        return respond(json.dumps(dict_), UNAUTHORIZED)
+
     def return_response_object(self):
         return respond(json.dumps(self.response_object()), self.status_code)
 

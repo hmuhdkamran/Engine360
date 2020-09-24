@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+import Api.ErrorHandling.errors as error_handler
+
+handler404 = error_handler.handler404error
+handler500 = error_handler.handler500error
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('Api.Routes')),

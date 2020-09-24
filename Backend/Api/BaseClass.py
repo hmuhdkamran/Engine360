@@ -1,8 +1,8 @@
 import asyncio
 
-from asgiref.sync import sync_to_async
 from django.utils.decorators import classonlymethod
 from django.views.generic import View
+from asgiref.sync import sync_to_async
 
 from Filters.Jwt import JWTClass
 from Models.models import LogEntryForException

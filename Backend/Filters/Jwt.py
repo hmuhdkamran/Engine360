@@ -48,7 +48,7 @@ class JWTClass:
             'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name': [user.Username,
                                                                            user.DisplayName],
             'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role': roles,
-            'https://cms360/claims/culturename': user.Language,
+            'https://engine360/claims/culturename': user.Language,
             'iss': self.TokenProvider['tokenIssuer'],
             'sub': user.Username,
             'typ': 'JWT',
@@ -128,5 +128,4 @@ class JWTClass:
         date, timestamp = self.get_expiry_date()
         created_at = datetime.datetime.now().timestamp()
         time_information = {'expiry_date': timestamp, 'created_at': created_at}
-        # user_session = UserSession.objects.create(UserId=user, Expiry=date, ChallengeCheck='')
         return self.generate_jwt_token(user, self.get_user_roles(user), time_information)
