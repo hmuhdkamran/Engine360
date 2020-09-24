@@ -114,7 +114,7 @@ CACHES = {
     }
 }
 
-CACHE_TTL = ConfigLoad['redis']['TTL']
+CACHE_TTL = ConfigLoad['tokenProvider']['tokenExpiration']
 
 if HostName and UserId and Password and Database and Port:
     DATABASES = {
