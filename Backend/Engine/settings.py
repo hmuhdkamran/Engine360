@@ -50,22 +50,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-REDIS_HOST = '127.0.0.1'
-REDIS_PORT = '6379'
-
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://" + REDIS_HOST + ":" + REDIS_PORT + "/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient"
-        },
-        "KEY_PREFIX": "engine360"
-    }
-}
-
-CACHE_TTL = 60 * 15
-
 ROOT_URLCONF = 'Engine.urls'
 
 AUTH_USER_MODEL = 'Models.User'
@@ -100,8 +84,8 @@ path = path.parent
 ConfigFile = os.path.join(BASE_DIR, 'Engine', 'project_settings.json')
 SettingInfo = ConfigFile
 SettingInfo = open(SettingInfo, 'r')
-SettingInfo = json.loads(SettingInfo.read())
-SettingInfo = SettingInfo['data']['connectionString']
+ConfigLoad = json.loads(SettingInfo.read())
+SettingInfo = ConfigLoad['data']['connectionString']
 SettingInfo = SettingInfo.split(';')
 SettingInfoDic = {}
 
@@ -115,6 +99,22 @@ UserId = SettingInfoDic['UserId']
 Password = SettingInfoDic['Password']
 Database = SettingInfoDic['Database']
 Port = SettingInfoDic['Port']
+
+REDIS_HOST = ConfigLoad['redis']['HOST']
+REDIS_PORT = ConfigLoad['redis']['PORT']
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://" + REDIS_HOST + ":" + REDIS_PORT + "/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "engine360"
+    }
+}
+
+CACHE_TTL = ConfigLoad['redis']['TTL']
 
 if HostName and UserId and Password and Database and Port:
     DATABASES = {
