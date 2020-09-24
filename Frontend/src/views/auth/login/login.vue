@@ -2,7 +2,7 @@
   <!--begin::Signin-->
   <div class="login-form">
     <!--begin::Form-->
-    <form class="form" id="kt_login_singin_form" action="">
+    <div class="form" id="kt_login_singin_form" action="">
       <!--begin::Title-->
       <div class="pb-5 pb-lg-15">
         <h3 class="font-weight-bolder text-dark font-size-h2 font-size-h1-lg">Sign In</h3>
@@ -27,8 +27,8 @@
       <!--end::Form group-->
       <!--begin::Action-->
       <div class="pb-lg-0 pb-5">
-        <button type="submit" id="kt_login_singin_form_submit_button" class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3" @click="login()">Sign In</button>
-        <button type="button" class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg">
+        <button class="btn btn-primary font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3" @click="login()">Sign In</button>
+        <button class="btn btn-light-primary font-weight-bolder px-8 py-4 my-3 font-size-lg">
         <span class="svg-icon svg-icon-md">
           <!--begin::Svg Icon | path:assets/media/svg/social-icons/google.svg-->
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -41,7 +41,7 @@
         </span>Sign in with Google</button>
       </div>
       <!--end::Action-->
-    </form>
+    </div>
     <!--end::Form-->
   </div>
   <!--end::Signin-->
