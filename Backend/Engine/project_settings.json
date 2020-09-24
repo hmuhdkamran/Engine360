@@ -1,14 +1,14 @@
 {
   "data": {
-    "connectionString": "Server=127.0.0.1;Port=5432;UserId=postgres;Password=newpassword;Database=Engine360;"
+    "connectionString": "Server=127.0.0.1;Port=5432;UserId=postgres;Password=combine;Database=Engine360;"
   },
-  "claimsNamespace": "https://cms360/claims/",
+  "claimsNamespace": "https://engine360/claims/",
   "tokenProvider": {
     "tokenExpiration": "630",
     "tokenSecurityKey": "startrekkingacrosstheuniverseonthestarshipenterpriseundercaptainkirk",
     "tokenSecurityAlgorithm": "HS256",
     "tokenIssuer": "localhost",
-    "tokenAudience": "cms360app"
+    "tokenAudience": "engine360app"
   },
   "saltLength": 32,
   "backendEngine": {
