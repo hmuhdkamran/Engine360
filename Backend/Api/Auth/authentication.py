@@ -1,6 +1,9 @@
 import json
 
+import redis
 from asgiref.sync import sync_to_async
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 
 from Api.BaseClass import BaseClass
 from Filters.Jwt import JWTClass
@@ -12,17 +15,36 @@ from Models.models import User
 
 DRequests = DecoratorHandler()
 
-class LoginClass(BaseClass):
+CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
+redis_instance = redis.StrictRedis(host=settings.REDIS_HOST,
+                                   port=settings.REDIS_PORT, db=0)
+
+
+class Authentication(BaseClass):
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.path.split('/')[-1] == 'login':
+            return self.login(request)
+        elif request.method.lower() == "post" and request.path.split('/')[-1] == 'register':
+            return self.register(request)
+        elif request.method.lower() == "post" and request.path.split('/')[-1] == 'logout':
+            return self.logout(request)
+
+        return super().dispatch(request, *args, **kwargs)
 
     @sync_to_async
     def get_user_obj(self, email):
         return User.objects.filter(Username=email).last()
 
     @sync_to_async
+    def logout_token(self, token_):
+        return JWTClass().decode_jwt_token_and_logout(token_)
+
+    @sync_to_async
     def get_user_token(self, user_):
         return JWTClass().create_user_session(user_)
 
-    async def post(self, request):
+    async def login(self, request):
         data = json.loads(request.body.decode('utf-8'))
         email = data['username'].lower().strip()
         password = data['password']
@@ -37,9 +59,6 @@ class LoginClass(BaseClass):
         return FailureResponse(text='Username or password is incorrect.',
                                status_code=BAD_REQUEST_CODE).return_response_object()
 
-
-class RegisterClass(BaseClass):
-
     @sync_to_async
     def check_email_exists(self, email):
         if User.objects.filter(Username=email).exists():
@@ -53,11 +72,7 @@ class RegisterClass(BaseClass):
         return User.objects.create(Username=email, Password=hash_pass, DisplayName=name, Language=language,
                                    Salt=salt, Status=status)
 
-    @sync_to_async
-    def create_user_session(self, user_):
-        return JWTClass().create_user_session(user_)
-
-    async def post(self, request):
+    async def register(self, request):
         data = json.loads(request.body.decode('utf-8'))
         email = data['username'].strip().lower()
         password = data['password'].strip()
@@ -81,5 +96,14 @@ class RegisterClass(BaseClass):
 
         user_ = await self.create_a_new_user(email, hash_pass, name, language, salt, True)
 
-        data = await self.create_user_session(user_)
+        data = await self.get_user_token(user_)
         return SuccessResponse(data=data, text='User Created Successfully!').return_response_object()
+
+    async def logout(self, request):
+        permission_ = await self.check_user_permission(request)
+        if not permission_:
+            return FailureResponse().unauthorized_object()
+
+        token_ = request.META['HTTP_AUTHORIZATION']
+        await self.logout_token(token_)
+        return SuccessResponse(data={}, text='Logout').return_response_object()

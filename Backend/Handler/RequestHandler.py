@@ -1,5 +1,6 @@
 from functools import wraps
 
+from asgiref.sync import sync_to_async
 from django.views.decorators.csrf import csrf_exempt
 
 from Filters.Jwt import *
@@ -25,6 +26,7 @@ class RequestHandler:
             ip_address = ''
         return ip_address
 
+    @sync_to_async
     def _exception_log_entry(self, exception):
         LogEntryForException.objects.create(Exception=exception, RequestUrl=self.requested_url,
                                             UserAgent=self.user_agent,
@@ -33,7 +35,9 @@ class RequestHandler:
 
 
 class DecoratorHandler:
+
     @staticmethod
+    @sync_to_async
     def authentication_level(request, authentication_level):
         token_ = request.META['HTTP_AUTHORIZATION'] if 'HTTP_AUTHORIZATION' in request.META else ''
         if token_:
@@ -46,30 +50,42 @@ class DecoratorHandler:
         def decorator(view):
             @csrf_exempt
             @wraps(view)
-            def wrapper(request, *args, **kwargs):
+            async def wrapper(request, *args, **kwargs):
                 request_handler = RequestHandler(request)
                 if request.request.method in allowed_method_list:
                     if is_authenticated:
-                        user_ = self.authentication_level(request.request, authentication_level)
+                        user_ = await self.authentication_level(request.request, authentication_level)
                         if user_:
                             request.user = user_
                             try:
-                                response = view(request.request, *args, **kwargs)
+                                response = await view(request.request, *args, **kwargs)
                             except Exception as e:
-                                request_handler._exception_log_entry(e)
+                                await request_handler._exception_log_entry(e)
                                 response = FailureResponse().return_response_object()
                         else:
                             response = FailureResponse().unauthorized_object()
                     else:
                         try:
-                            response = view(request, *args, **kwargs)
+                            response = await view(request, *args, **kwargs)
                         except Exception as e:
-                            request_handler._exception_log_entry(e)
+                            await request_handler._exception_log_entry(e)
                             response = FailureResponse().return_response_object()
                 else:
                     response = FailureResponse().method_not_allowed()
-                return response
+                return await response
 
             return wrapper
 
         return decorator
+
+
+def method_decorator_adaptor(adapt_to, *decorator_args, **decorator_kwargs):
+    def decorator_outer(func):
+        @wraps(func)
+        def decorator(self, *args, **kwargs):
+            @adapt_to(*decorator_args, **decorator_kwargs)
+            def adaptor(*args, **kwargs):
+                return func(self, *args, **kwargs)
+            return adaptor(*args, **kwargs)
+        return decorator
+    return decorator_outer

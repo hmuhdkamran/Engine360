@@ -1,18 +1,25 @@
 import datetime
 import json
-import os
-import jwt
-import uuid
 from datetime import timedelta
-from Models.models import *
-from Engine.settings import ConfigFile
+
+import jwt
+import redis
+from django.conf import settings
 from django.db import connection
+
+from Engine.settings import ConfigFile
+from Models.models import *
+
+redis_instance = redis.StrictRedis(host=settings.REDIS_HOST,
+                                   port=settings.REDIS_PORT, db=0)
 
 
 class JWTClass:
     def __init__(self):
         self.Path = ConfigFile
         self.TokenProvider = self.get_jwt_information()
+        self.SecretKey = self.TokenProvider['tokenSecurityKey']
+        self.Algorithm = self.TokenProvider['tokenSecurityAlgorithm']
 
     @staticmethod
     def generate_specification():
@@ -32,26 +39,26 @@ class JWTClass:
     def convert_date_time_to_timestamp(date_time):
         return int(date_time.timestamp())
 
-    def get_jwt_model(self, user_session, roles, expiry_date):
+    def get_jwt_model(self, user, roles, time_information):
         return {
             'aud': self.TokenProvider['tokenAudience'],
-            'expiry': expiry_date,
-            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid': str(user_session.UserId.UserId),
-            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress': user_session.UserId.Username,
-            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name': [user_session.UserId.Username,
-                                                                           user_session.UserId.DisplayName],
+            'expiry': time_information['expiry_date'],
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid': str(user.UserId),
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress': user.Username,
+            'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name': [user.Username,
+                                                                           user.DisplayName],
             'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role': roles,
-            'https://cms360/claims/culturename': user_session.UserId.Language,
+            'https://cms360/claims/culturename': user.Language,
             'iss': self.TokenProvider['tokenIssuer'],
-            'sub': user_session.UserId.Username,
-            'exp': self.convert_date_time_to_timestamp(user_session.Expiry),
-            'nbf': self.convert_date_time_to_timestamp(user_session.CreatedAt)
+            'sub': user.Username,
+            'typ': 'JWT',
+            'exp': time_information['expiry_date'],
+            'iat': time_information['created_at']
         }
 
-    def generate_jwt_token(self, user_session, roles, expiry_date):
-        data_ = self.get_jwt_model(user_session, roles, expiry_date)
-        encoded_token = jwt.encode(data_, self.TokenProvider['tokenSecurityKey'],
-                                   algorithm=self.TokenProvider['tokenSecurityAlgorithm'])
+    def generate_jwt_token(self, user, roles, time_information):
+        data_ = self.get_jwt_model(user, roles, time_information)
+        encoded_token = jwt.encode(data_, key=self.SecretKey, algorithm=self.Algorithm)
         encoded_token = encoded_token.decode('utf-8')
         return encoded_token
 
@@ -63,12 +70,20 @@ class JWTClass:
 
     def decode_jwt_token(self, token, role_check=None):
         try:
-            decoded_token = jwt.decode(token, self.TokenProvider['tokenSecurityKey'],
-                                       algorithm=[self.TokenProvider['tokenSecurityAlgorithm']])
+            decoded_token = jwt.decode(token, key=self.SecretKey, algorithms=self.Algorithm, verify=False)
             expiry_ = datetime.datetime.fromtimestamp(decoded_token['expiry'])
+
             if expiry_ > datetime.datetime.now():
-                user = User.objects.get(UserId=decoded_token['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid'])
-                return self.response_user_id(user)
+
+                black_list_tokens = redis_instance.get('black_list_tokens')
+                if black_list_tokens:
+                    block_list_tokens = json.loads(black_list_tokens)
+                    if token in block_list_tokens:
+                        return False
+
+                user = User.objects.get(
+                    UserId=decoded_token['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid'])
+                return user
             return False
         except Exception as e:
             return False
@@ -76,9 +91,22 @@ class JWTClass:
     def decode_jwt_token_and_logout(self, token):
         try:
             decoded_token = jwt.decode(token, self.TokenProvider['tokenSecurityKey'],
-                                       algorithm=[self.TokenProvider['tokenSecurityAlgorithm']])
+                                       algorithm=[self.TokenProvider['tokenSecurityAlgorithm']], verify=False)
             expiry_ = datetime.datetime.fromtimestamp(decoded_token['expiry'])
-            UserSession.objects.filter(Expiry=expiry_).update(IsValid=False)
+
+            black_list_tokens = redis_instance.get('black_list_tokens')
+            if black_list_tokens:
+                black_list_tokens = json.loads(black_list_tokens)
+                if token in black_list_tokens:
+                    return False
+            else:
+                black_list_tokens = []
+
+            if expiry_ > datetime.datetime.now():
+                black_list_tokens.append(token)
+                black_list_tokens = json.dumps(black_list_tokens)
+                redis_instance.set('black_list_tokens', black_list_tokens)
+
             return True
         except Exception as e:
             return False
@@ -98,5 +126,7 @@ class JWTClass:
 
     def create_user_session(self, user):
         date, timestamp = self.get_expiry_date()
-        user_session = UserSession.objects.create(UserId=user, Expiry=date, ChallengeCheck='')
-        return self.generate_jwt_token(user_session, self.get_user_roles(user), timestamp)
+        created_at = datetime.datetime.now().timestamp()
+        time_information = {'expiry_date': timestamp, 'created_at': created_at}
+        # user_session = UserSession.objects.create(UserId=user, Expiry=date, ChallengeCheck='')
+        return self.generate_jwt_token(user, self.get_user_roles(user), time_information)
