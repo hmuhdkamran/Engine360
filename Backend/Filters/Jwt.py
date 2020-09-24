@@ -68,10 +68,21 @@ class JWTClass:
             return us_.UserId
         return False
 
-    def decode_jwt_token(self, token, role_check=None):
+    @staticmethod
+    def check_route_and_permission(obj, route_info):
+        if obj['RouteName'] == route_info['RouteName'] and obj['Operation'] == route_info['Operation']:
+            return True
+        return False
+
+    def decode_jwt_token(self, token, route_info=None):
         try:
             decoded_token = jwt.decode(token, key=self.SecretKey, algorithms=self.Algorithm, verify=False)
             expiry_ = datetime.datetime.fromtimestamp(decoded_token['expiry'])
+
+            roles = decoded_token['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role']
+            if route_info:
+                if len(list(filter(lambda x: self.check_route_and_permission(x, route_info), roles))) == 0:
+                    return False
 
             if expiry_ > datetime.datetime.now():
 

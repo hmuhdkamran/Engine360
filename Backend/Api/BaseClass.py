@@ -16,15 +16,15 @@ class BaseClass(View):
         view._is_coroutine = asyncio.coroutines._is_coroutine
         return view
 
-    async def check_user_permission(self, request):
-        return await self.check_authentication(request)
+    async def check_user_permission(self, request, route_info=None):
+        return await self.check_authentication(request, route_info)
 
     @staticmethod
     @sync_to_async
-    def check_authentication(request):
+    def check_authentication(request, route_info):
         token_ = request.META['HTTP_AUTHORIZATION'] if 'HTTP_AUTHORIZATION' in request.META else ''
         if token_:
-            response = JWTClass().decode_jwt_token(token_)
+            response = JWTClass().decode_jwt_token(token_, route_info)
             if response:
                 return response
         return False

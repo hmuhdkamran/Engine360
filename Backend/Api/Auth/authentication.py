@@ -107,7 +107,7 @@ class Authentication(BaseClass):
         return SuccessResponse(data=data, text='User Created Successfully!').return_response_object()
 
     async def logout(self, request):
-        permission_ = await self.check_user_permission(request)
+        permission_ = await self.check_user_permission(request, {'RouteName': 'Home', 'Operation': 'CRUD'})
         if not permission_:
             return FailureResponse().unauthorized_object()
 
