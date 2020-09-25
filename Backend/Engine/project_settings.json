@@ -1,8 +1,11 @@
 {
   "data": {
-    "connectionString": "Server=127.0.0.1;Port=5432;UserId=postgres;Password=1234;Database=EngineTest;"
+    "connectionString": "Server=127.0.0.1;Port=5432;UserId=postgres;Password=combine;Database=Engine360;"
   },
-  "redis": {"HOST": "127.0.0.1", "PORT": "6379", "TTL": 500},
+  "redis": {
+    "redisHost": "127.0.0.1", 
+    "redisPort": "6379"
+  },
   "claimsNamespace": "https://engine360/claims/",
   "tokenProvider": {
     "tokenExpiration": "630",

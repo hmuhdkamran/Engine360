@@ -100,8 +100,8 @@ Password = SettingInfoDic['Password']
 Database = SettingInfoDic['Database']
 Port = SettingInfoDic['Port']
 
-REDIS_HOST = ConfigLoad['redis']['HOST']
-REDIS_PORT = ConfigLoad['redis']['PORT']
+REDIS_HOST = ConfigLoad['redis']['redisHost']
+REDIS_PORT = ConfigLoad['redis']['redisPort']
 
 CACHES = {
     "default": {
@@ -110,11 +110,11 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
-        "KEY_PREFIX": "engine360"
+        "KEY_PREFIX": ConfigLoad['tokenProvider']['tokenAudience']
     }
 }
 
-CACHE_TTL = ConfigLoad['redis']['TTL']
+CACHE_TTL = ConfigLoad['tokenProvider']['tokenExpiration']
 
 if HostName and UserId and Password and Database and Port:
     DATABASES = {
