@@ -31,6 +31,7 @@ export default class LoginView extends Vue {
       .then((value) => this.$store.dispatch(StoreTypes.updateUser, value))
       .then(() => this.$store.dispatch(StoreTypes.updateStatusBar, null))
       .then(() => this.$router.push("/home"))
+      .then(() => location.reload())
       .catch(() => this.$store.dispatch(StoreTypes.updateStatusBar, {
         text: 'Invalid UserName or Password',
         title: 'Error',
