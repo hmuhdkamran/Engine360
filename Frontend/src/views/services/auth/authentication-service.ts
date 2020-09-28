@@ -40,6 +40,8 @@ export class AuthenticationService extends StoreService {
       }
     };
 
-    return Axios.put(GlobalConfig.uri.auth + 'logout', null).then(onSuccess);
+    return Axios.put(GlobalConfig.uri.auth + 'logout', null)
+      .then(onSuccess)
+      .then(() => location.reload());
   }
 }

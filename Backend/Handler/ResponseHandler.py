@@ -19,7 +19,7 @@ class SuccessResponse:
         return {
             'data': self.data,
             'message': {
-                "status": self.status_code,
+                "messageTypeId": self.status_code,
                 "text": self.text,
                 "title": self.title
             }
@@ -28,8 +28,9 @@ class SuccessResponse:
     def return_response_object(self):
         try:
             value_ = json.dumps(self.response_object())
-            return respond(value_, self.status_code)
+            return respond(value_)
         except Exception as e:
+            print (e)
             return FailureResponse('Failed to serialize data').return_response_object()
 
 
@@ -43,7 +44,7 @@ class FailureResponse:
         return {
             'data': {},
             'message': {
-                "status": self.status_code,
+                "messageTypeId": self.status_code,
                 "text": self.text,
                 "title": self.title
             }
@@ -53,50 +54,50 @@ class FailureResponse:
         dict_ = {
             'data': {},
             'message': {
-                "status": METHOD_NOT_ALLOWED,
+                "messageTypeId": METHOD_NOT_ALLOWED,
                 "text": "METHOD_NOT_ALLOWED",
                 "title": self.title
             }
         }
-        return respond(json.dumps(dict_), METHOD_NOT_ALLOWED)
+        return respond(json.dumps(dict_))
 
     def unauthorized_object(self):
         dict_ = {
             'data': {},
             'message': {
-                "status": UNAUTHORIZED,
+                "messageTypeId": UNAUTHORIZED,
                 "text": 'Unauthorized User',
                 "title": self.title
             }
         }
-        return respond(json.dumps(dict_), UNAUTHORIZED)
+        return respond(json.dumps(dict_))
 
     def bad_url_object(self):
         dict_ = {
             'data': {},
             'message': {
-                "status": PAGE_NOT_FOUND,
+                "messageTypeId": PAGE_NOT_FOUND,
                 "text": 'Page not found',
                 "title": self.title
             }
         }
-        return respond(json.dumps(dict_), UNAUTHORIZED)
+        return respond(json.dumps(dict_))
 
     def something_went_wrong(self):
         dict_ = {
             'data': {},
             'message': {
-                "status": INTERNAL_SERVER_ERROR,
+                "messageTypeId": INTERNAL_SERVER_ERROR,
                 "text": 'Something went wrong',
                 "title": self.title
             }
         }
-        return respond(json.dumps(dict_), UNAUTHORIZED)
+        return respond(json.dumps(dict_))
 
     def return_response_object(self):
-        return respond(json.dumps(self.response_object()), self.status_code)
+        return respond(json.dumps(self.response_object()))
 
 
-def respond(value, status):
-    response = HttpResponse(value, content_type='application/json', status=status)
+def respond(value):
+    response = HttpResponse(value, content_type='application/json', status=200)
     return response

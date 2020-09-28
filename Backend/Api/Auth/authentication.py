@@ -27,7 +27,7 @@ class Authentication(BaseClass):
             return self.login(request)
         elif request.method.lower() == "post" and request.path.split('/')[-1] == 'register':
             return self.register(request)
-        elif request.method.lower() == "post" and request.path.split('/')[-1] == 'logout':
+        elif request.method.lower() == "put" and request.path.split('/')[-1] == 'logout':
             return self.logout(request)
 
         return super().dispatch(request, *args, **kwargs)
@@ -74,7 +74,7 @@ class Authentication(BaseClass):
 
     @sync_to_async
     def create_user_role_entries(self, user):
-        roles_ = RolesRoutesMap.objects.filter(RoleId__FullName='user')
+        roles_ = RolesRoutesMap.objects.filter(RoleId__FullName='User')
         user_role_map = [UsersRolesMap(UserId=user, RoleRouteMapId=x, Status=True) for x in roles_]
         UsersRolesMap.objects.bulk_create(user_role_map)
 
@@ -82,9 +82,9 @@ class Authentication(BaseClass):
         data = json.loads(request.body.decode('utf-8'))
         email = data['username'].strip().lower()
         password = data['password'].strip()
-        confirm_password = data['confirm_password'].strip()
-        name = data['name'].strip()
-        language = data['language'].strip() if 'language' in data else 'English'
+        confirm_password = data['confirmPassword'].strip()
+        name = data['displayName'].strip()
+        language = data['language'].strip() if 'language' in data else 'eng'
 
         if not check_email_validation(email):
             return FailureResponse(text='Please type valid email address',
@@ -103,13 +103,12 @@ class Authentication(BaseClass):
         user_ = await self.create_a_new_user(email, hash_pass, name, language, salt, True)
         await self.create_user_role_entries(user_)
 
-        data = await self.get_user_token(user_)
-        return SuccessResponse(data=data, text='User Created Successfully!').return_response_object()
+        return SuccessResponse(data={}, text='User Created Successfully!').return_response_object()
 
     async def logout(self, request):
-        permission_ = await self.check_user_permission(request, {'RouteName': 'Home', 'Operation': 'CRUD'})
-        if not permission_:
-            return FailureResponse().unauthorized_object()
+        # permission_ = await self.check_user_permission(request, {'RouteName': 'Home', 'Operation': 'CRUD'})
+        # if not permission_:
+        #     return FailureResponse().unauthorized_object()
 
         token_ = request.META['HTTP_AUTHORIZATION']
         await self.logout_token(token_)

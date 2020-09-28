@@ -76,6 +76,7 @@ class JWTClass:
 
     def decode_jwt_token(self, token, route_info=None):
         try:
+            token = token[7:]
             decoded_token = jwt.decode(token, key=self.SecretKey, algorithms=self.Algorithm, verify=False)
             expiry_ = datetime.datetime.fromtimestamp(decoded_token['expiry'])
 
@@ -101,6 +102,7 @@ class JWTClass:
 
     def decode_jwt_token_and_logout(self, token):
         try:
+            token = token[7:]
             decoded_token = jwt.decode(token, self.TokenProvider['tokenSecurityKey'],
                                        algorithm=[self.TokenProvider['tokenSecurityAlgorithm']], verify=False)
             expiry_ = datetime.datetime.fromtimestamp(decoded_token['expiry'])
