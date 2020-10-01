@@ -7,8 +7,8 @@
         <!--begin::Wrapper-->
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
           <tool-bar />
-          <router-view v-slot="{ Component }">
-            <transition name="fade" mode="out-in">
+          <router-view v-slot="{ Component, route }">
+            <transition :name="route.meta.transition || 'fade'">
               <component :is="Component" />
             </transition>
           </router-view>
