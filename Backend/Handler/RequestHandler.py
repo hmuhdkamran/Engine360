@@ -1,6 +1,6 @@
 from functools import wraps
 
-from asgiref.sync import sync_to_async
+from asgiref.sync import sync_to_async, async_to_sync
 from django.views.decorators.csrf import csrf_exempt
 
 from Filters.Jwt import *
@@ -38,15 +38,20 @@ class DecoratorHandler:
 
     @staticmethod
     @sync_to_async
-    def authentication_level(request, authentication_level):
+    def authentication_level(request, operation_required):
+        request_path = request.path.split('/')[-2]
         token_ = request.META['HTTP_AUTHORIZATION'] if 'HTTP_AUTHORIZATION' in request.META else ''
         if token_:
-            response = JWTClass().decode_jwt_token(token_, authentication_level)
+            route_info = {'RouteName': request_path, 'Operation': operation_required}
+            response = JWTClass().decode_jwt_token(token_, route_info)
             if response:
                 return response
         return False
 
-    def rest_api_call(self, allowed_method_list, is_authenticated=False, authentication_level=None):
+    def return_http_response(self, response):
+        return response
+
+    def rest_api_call(self, allowed_method_list, is_authenticated=False, operation_required=''):
         def decorator(view):
             @csrf_exempt
             @wraps(view)
@@ -54,25 +59,25 @@ class DecoratorHandler:
                 request_handler = RequestHandler(request)
                 if request.request.method in allowed_method_list:
                     if is_authenticated:
-                        user_ = await self.authentication_level(request.request, authentication_level)
+                        user_ = await self.authentication_level(request.request, operation_required)
                         if user_:
-                            request.user = user_
+                            request.request.user = user_
                             try:
-                                response = await view(request.request, *args, **kwargs)
+                                response = await view(request, *args, **kwargs)
                             except Exception as e:
                                 await request_handler._exception_log_entry(e)
-                                response = FailureResponse().return_response_object()
+                                response = self.return_http_response(FailureResponse().return_response_object())
                         else:
-                            response = FailureResponse().unauthorized_object()
+                            response = self.return_http_response(FailureResponse().unauthorized_object())
                     else:
                         try:
                             response = await view(request, *args, **kwargs)
                         except Exception as e:
                             await request_handler._exception_log_entry(e)
-                            response = FailureResponse().return_response_object()
+                            response = self.return_http_response(FailureResponse().return_response_object())
                 else:
-                    response = FailureResponse().method_not_allowed()
-                return await response
+                    response = self.return_http_response(FailureResponse().method_not_allowed())
+                return response
 
             return wrapper
 

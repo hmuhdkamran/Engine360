@@ -1,16 +1,19 @@
-
 from Api.BaseClass import *
 from Models.models import Roles
 
+DRequests = DecoratorHandler()
+
+
 class RolesController(BaseClass):
     def dispatch(self, request, *args, **kwargs):
-        if (request.method.lower() == "get" and request.path.split('/')[-1] == 'getAll'):
+        if request.method.lower() == "get" and request.path.split('/')[-1] == 'getAll':
             return self.get_all()
-        elif (request.method.lower() == "post" and request.path.split('/')[-1] == 'findBy'):
+        elif request.method.lower() == "post" and request.path.split('/')[-1] == 'findBy':
             return self.find_by(request)
-        elif (request.method.lower() == "post" and request.path.split('/')[-1] == 'create') or (request.method.lower() == "post" and request.path.split('/')[-1] == 'update'):
+        elif (request.method.lower() == "post" and request.path.split('/')[-1] == 'create') or (
+                request.method.lower() == "post" and request.path.split('/')[-1] == 'update'):
             return self.create(request)
-        elif (request.method.lower() == "post" and request.path.split('/')[-1] == 'delete'):
+        elif request.method.lower() == "post" and request.path.split('/')[-1] == 'delete':
             return self.delete(request)
 
         return super().dispatch(request, *args, **kwargs)
@@ -48,6 +51,7 @@ class RolesController(BaseClass):
     def delete_function(self, data):
         Roles.objects.filter(RoleId=data['RoleId']).delete()
 
+    @DRequests.rest_api_call(['GET'], is_authenticated=True, operation_required='R')
     async def get_all(self):
         items = await self.get_all_function()
         items = await self.retrieve_objects(items)
@@ -59,13 +63,15 @@ class RolesController(BaseClass):
         items = await self.retrieve_objects(items)
         return SuccessResponse(data=items).return_response_object()
 
+    @DRequests.rest_api_call(['POST'], is_authenticated=True, operation_required='C')
     async def create(self, request):
-        await self.create_function(json.loads(request.body.decode('utf-8')))
+        await self.create_update_function(json.loads(request.body.decode('utf-8')))
         return SuccessResponse().return_response_object()
 
     async def delete(self, request):
         await self.delete_function(json.loads(request.body.decode('utf-8')))
         return SuccessResponse().return_response_object()
+
 
 urlpatterns = [
     path('setup/getAll', RolesController.as_view()),
