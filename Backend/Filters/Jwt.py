@@ -70,7 +70,7 @@ class JWTClass:
 
     @staticmethod
     def check_route_and_permission(obj, route_info):
-        if obj['RouteName'] == route_info['RouteName'] and obj['Operation'] == route_info['Operation']:
+        if obj['RouteName'].lower() == route_info['RouteName'].lower() and route_info['Operation'] in list(obj['Operation']):
             return True
         return False
 
@@ -104,7 +104,7 @@ class JWTClass:
         try:
             token = token[7:]
             decoded_token = jwt.decode(token, self.TokenProvider['tokenSecurityKey'],
-                                       algorithm=[self.TokenProvider['tokenSecurityAlgorithm']], verify=False)
+                                        algorithm=[self.TokenProvider['tokenSecurityAlgorithm']], verify=False)
             expiry_ = datetime.datetime.fromtimestamp(decoded_token['expiry'])
 
             black_list_tokens = redis_instance.get('black_list_tokens')
