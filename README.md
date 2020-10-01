@@ -17,7 +17,6 @@ For more details about the implementations of features, you can refer to [securi
 Your development machine will need to have the following installed.
 
 * [Python](https://www.python.org/downloads/)
-* [Webpack 4+](https://webpack.js.org/api/cli/)
 * [Node.js](https://nodejs.org/en/)
 * [PostgreSQL](https://www.postgresql.org/)
 * [Visual Studio Code](https://code.visualstudio.com/download/) (or a similar text-based editor like Sublime)
