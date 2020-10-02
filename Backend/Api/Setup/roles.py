@@ -51,7 +51,7 @@ class RolesController(BaseClass):
     def delete_function(self, data):
         Roles.objects.filter(RoleId=data['RoleId']).delete()
 
-    @DRequests.rest_api_call(['GET'], is_authenticated=True, operation_required='R')
+    @DRequests.rest_api_call(['GET'], is_authenticated=True, claim='setup',operation='R')
     async def get_all(self):
         items = await self.get_all_function()
         items = await self.retrieve_objects(items)
@@ -63,7 +63,7 @@ class RolesController(BaseClass):
         items = await self.retrieve_objects(items)
         return SuccessResponse(data=items).return_response_object()
 
-    @DRequests.rest_api_call(['POST'], is_authenticated=True, operation_required='C')
+    @DRequests.rest_api_call(['POST'], is_authenticated=True, claim='setup', operation='C')
     async def create(self, request):
         await self.create_update_function(json.loads(request.body.decode('utf-8')))
         return SuccessResponse().return_response_object()

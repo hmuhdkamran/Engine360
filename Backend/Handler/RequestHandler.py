@@ -38,11 +38,11 @@ class DecoratorHandler:
 
     @staticmethod
     @sync_to_async
-    def authentication_level(request, operation_required):
-        request_path = request.path.split('/')[-2]
+    def authentication_level(request, claim, operation):
+        # request_path = request.path.split('/')[-2]
         token_ = request.META['HTTP_AUTHORIZATION'] if 'HTTP_AUTHORIZATION' in request.META else ''
         if token_:
-            route_info = {'RouteName': request_path, 'Operation': operation_required}
+            route_info = {'RouteName': claim, 'Operation': operation}
             response = JWTClass().decode_jwt_token(token_, route_info)
             if response:
                 return response
@@ -51,7 +51,7 @@ class DecoratorHandler:
     def return_http_response(self, response):
         return response
 
-    def rest_api_call(self, allowed_method_list, is_authenticated=False, operation_required=''):
+    def rest_api_call(self, allowed_method_list, is_authenticated=False, operation='', claim=''):
         def decorator(view):
             @csrf_exempt
             @wraps(view)
@@ -59,7 +59,7 @@ class DecoratorHandler:
                 request_handler = RequestHandler(request)
                 if request.request.method in allowed_method_list:
                     if is_authenticated:
-                        user_ = await self.authentication_level(request.request, operation_required)
+                        user_ = await self.authentication_level(request.request,claim, operation)
                         if user_:
                             request.request.user = user_
                             try:
