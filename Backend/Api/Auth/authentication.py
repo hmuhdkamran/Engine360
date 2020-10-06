@@ -1,11 +1,8 @@
-import json
-
 import redis
-from asgiref.sync import sync_to_async
 from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 
-from Api.BaseClass import BaseClass
+from Api.BaseClass import *
 from Filters.Jwt import JWTClass
 from Handler.PasswordHandler import Hashing
 from Handler.RequestHandler import DecoratorHandler, FailureResponse, SuccessResponse
@@ -21,16 +18,6 @@ redis_instance = redis.StrictRedis(host=settings.REDIS_HOST,
 
 
 class Authentication(BaseClass):
-
-    def dispatch(self, request, *args, **kwargs):
-        if request.path.split('/')[-1] == 'login':
-            return self.login(request)
-        elif request.method.lower() == "post" and request.path.split('/')[-1] == 'register':
-            return self.register(request)
-        elif request.method.lower() == "put" and request.path.split('/')[-1] == 'logout':
-            return self.logout(request)
-
-        return super().dispatch(request, *args, **kwargs)
 
     @sync_to_async
     def get_user_obj(self, email):
@@ -106,10 +93,14 @@ class Authentication(BaseClass):
         return SuccessResponse(data={}, text='User Created Successfully!').return_response_object()
 
     async def logout(self, request):
-        # permission_ = await self.check_user_permission(request, {'RouteName': 'Home', 'Operation': 'CRUD'})
-        # if not permission_:
-        #     return FailureResponse().unauthorized_object()
-
         token_ = request.META['HTTP_AUTHORIZATION']
         await self.logout_token(token_)
         return SuccessResponse(data={}, text='Logout').return_response_object()
+
+
+urlpatterns = [
+    path('auth/login', Authentication.as_view()),
+    path('auth/register', Authentication.as_view()),
+    path('auth/logout', Authentication.as_view()),
+
+]

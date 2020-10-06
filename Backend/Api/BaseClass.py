@@ -11,7 +11,13 @@ from Filters.Jwt import JWTClass
 from Models.models import LogEntryForException
 from Handler.RequestHandler import DecoratorHandler, SuccessResponse
 
+
 class BaseClass(View):
+
+    def dispatch(self, request, *args, **kwargs):
+        path_ = request.path.split('/')[-1]
+        handler = getattr(self, path_, self.http_method_not_allowed)
+        return handler(request, *args, **kwargs)
 
     @classonlymethod
     def as_view(cls, **initkwargs):
