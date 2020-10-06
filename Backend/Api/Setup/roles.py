@@ -5,18 +5,6 @@ DRequests = DecoratorHandler()
 
 
 class RolesController(BaseClass):
-    def dispatch(self, request, *args, **kwargs):
-        if request.method.lower() == "get" and request.path.split('/')[-1] == 'getAll':
-            return self.get_all()
-        elif request.method.lower() == "post" and request.path.split('/')[-1] == 'findBy':
-            return self.find_by(request)
-        elif (request.method.lower() == "post" and request.path.split('/')[-1] == 'create') or (
-                request.method.lower() == "post" and request.path.split('/')[-1] == 'update'):
-            return self.create(request)
-        elif request.method.lower() == "post" and request.path.split('/')[-1] == 'delete':
-            return self.delete(request)
-
-        return super().dispatch(request, *args, **kwargs)
 
     @staticmethod
     def purse(obj):
@@ -51,7 +39,7 @@ class RolesController(BaseClass):
     def delete_function(self, data):
         Roles.objects.filter(RoleId=data['RoleId']).delete()
 
-    @DRequests.rest_api_call(['GET'], is_authenticated=True, claim='setup',operation='R')
+    @DRequests.rest_api_call(['GET'], is_authenticated=True, claim='setup', operation='R')
     async def get_all(self):
         items = await self.get_all_function()
         items = await self.retrieve_objects(items)
