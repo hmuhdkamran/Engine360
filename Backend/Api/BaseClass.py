@@ -1,6 +1,7 @@
 import json
 import uuid
 import asyncio
+from Helper.Pagination import Paginate
 
 from django.utils.decorators import classonlymethod
 from django.views.generic import View
@@ -18,6 +19,17 @@ class BaseClass(View):
         path_ = request.path.split('/')[-1]
         handler = getattr(self, path_, self.http_method_not_allowed)
         return handler(request, *args, **kwargs)
+
+    @sync_to_async
+    def paginate_response(self, paginate_):
+        return paginate_.paginate()
+
+    @staticmethod
+    def get_pagination_params(request):
+        start_index = request.GET.get('start_index', 0)
+        limit = request.GET.get('limit', 10)
+        limit = int(limit)
+        return start_index, limit
 
     @classonlymethod
     def as_view(cls, **initkwargs):

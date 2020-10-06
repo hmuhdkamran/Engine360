@@ -40,13 +40,16 @@ class RolesController(BaseClass):
         Roles.objects.filter(RoleId=data['RoleId']).delete()
 
     @DRequests.rest_api_call(['GET'], is_authenticated=True, claim='setup', operation='R')
-    async def get_all(self):
+    async def getAll(self, request):
+        start_index, limit = self.get_pagination_params(request)
         items = await self.get_all_function()
-        items = await self.retrieve_objects(items)
+        paginate_ = Paginate(items, self.purse, start_index, limit)
+        items = await self.paginate_response(paginate_)
+        # items = await self.retrieve_objects(items)
         return SuccessResponse(data=items).return_response_object()
 
     @DRequests.rest_api_call(['POST'], is_authenticated=True, claim='setup',operation='R')
-    async def find_by(self, request):
+    async def findBy(self, request):
         data = json.loads(request.body.decode('utf-8'))
         items = await self.find_by_function(data['parameter'])
         items = await self.retrieve_objects(items)
