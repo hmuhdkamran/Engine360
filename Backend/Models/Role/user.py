@@ -17,7 +17,7 @@ class UserManager(BaseUserManager):
         hash_pass, salt = Hashing().generate_password(password)
 
         Username = self.normalize_email(Username)
-        Language = 'English'
+        Language = 'en'
         user = self.model(Username=Username, DisplayName=DisplayName, Language=Language,
                           Password=hash_pass, Salt=salt, Status=True)
         user.save(using=self._db)

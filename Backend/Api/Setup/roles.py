@@ -57,6 +57,7 @@ class RolesController(BaseClass):
         items = await self.retrieve_objects(items)
         return SuccessResponse(data=items).return_response_object()
 
+    @DRequests.rest_api_call(['POST'], is_authenticated=True, claim='setup',operation='R')
     async def find_by(self, request):
         data = json.loads(request.body.decode('utf-8'))
         items = await self.find_by_function(data['parameter'])
@@ -68,6 +69,7 @@ class RolesController(BaseClass):
         await self.create_update_function(json.loads(request.body.decode('utf-8')))
         return SuccessResponse().return_response_object()
 
+    @DRequests.rest_api_call(['POST'], is_authenticated=True, claim='setup',operation='D')
     async def delete(self, request):
         await self.delete_function(json.loads(request.body.decode('utf-8')))
         return SuccessResponse().return_response_object()
