@@ -57,6 +57,11 @@ class RolesController(BaseClass):
         await self.create_update_function(json.loads(request.body.decode('utf-8')))
         return SuccessResponse().return_response_object()
 
+    @DRequests.rest_api_call(['POST'], is_authenticated=True, claim='setup', operation='U')
+    async def update(self, request):
+        await self.create_update_function(json.loads(request.body.decode('utf-8')))
+        return SuccessResponse().return_response_object()
+
     @DRequests.rest_api_call(['POST'], is_authenticated=True, claim='setup',operation='D')
     async def delete(self, request):
         await self.delete_function(json.loads(request.body.decode('utf-8')))
