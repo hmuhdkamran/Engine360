@@ -39,7 +39,7 @@ class BackendRunScript:
 
     def create_venv_if_not_exists(self):
         if not os.path.isdir(self.venv_path):
-            os.system("pip install virtualenv")
+            os.system("pip3 install virtualenv")
             print(self.python_path)
             if self.python_path:
                 venv_path_cmd = "virtualenv --python=" + self.python_path + " " + self.venv_path
@@ -49,7 +49,7 @@ class BackendRunScript:
 
     def install_backend_requirements(self):
         if platform == "linux" or platform == "linux2":
-            venv_file_pip = os.path.join(self.venv_path, 'bin', 'pip')
+            venv_file_pip = os.path.join(self.venv_path, 'bin', 'pip3')
         else:
             venv_file_pip = os.path.join(self.venv_path, 'Scripts', 'pip')
         os.system(venv_file_pip + ' install -r ' + self.requirement_path)
@@ -64,7 +64,7 @@ class BackendRunScript:
 
     def run_back_end(self):
         if platform == "linux" or platform == "linux2":
-            venv_file_python = os.path.join(self.venv_path, 'bin', 'python')
+            venv_file_python = os.path.join(self.venv_path, 'bin', 'python3')
         else:
             venv_file_python = os.path.join(self.venv_path, 'Scripts', 'python')
         os.system(
