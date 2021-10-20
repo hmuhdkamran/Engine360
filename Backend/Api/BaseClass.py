@@ -8,10 +8,9 @@ from django.views.generic import View
 from asgiref.sync import sync_to_async
 from django.urls import path
 
-from Filters.Jwt import JWTClass
+from Filters.Jwt import JWTClass, connection
 from Models.models import LogEntryForException
 from Handler.RequestHandler import DecoratorHandler, SuccessResponse
-
 
 class BaseClass(View):
 
@@ -29,6 +28,7 @@ class BaseClass(View):
         start_index = request.GET.get('start_index', 0)
         limit = request.GET.get('limit', 10)
         limit = int(limit)
+        start_index = int(start_index)
         return start_index, limit
 
     @classonlymethod
@@ -49,6 +49,13 @@ class BaseClass(View):
             if response:
                 return response
         return False
+    
+    @staticmethod
+    @sync_to_async
+    def insert_query(query):
+         with connection.cursor() as cursor:
+            cursor.execute(query)
+            connection.commit()
 
     def decode_request_obj(self, request):
         user_agent = self.request.META.get('HTTP_USER_AGENT', '')

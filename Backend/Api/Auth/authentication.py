@@ -9,6 +9,9 @@ from Helper.Constants import *
 from Helper.Utils import *
 from Models.models import *
 
+import uuid
+
+
 DRequests = DecoratorHandler()
 
 CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
@@ -20,7 +23,7 @@ class Authentication(BaseClass):
 
     @sync_to_async
     def get_user_obj(self, email):
-        return User.objects.filter(Username=email).last()
+        return Users.objects.filter(Username=email).last()
 
     @sync_to_async
     def logout_token(self, token_):
@@ -47,7 +50,7 @@ class Authentication(BaseClass):
 
     @sync_to_async
     def check_email_exists(self, email):
-        if User.objects.filter(Username=email).exists():
+        if Users.objects.filter(Username=email).exists():
             return FailureResponse(text='Email already exists',
                                    status_code=BAD_REQUEST_CODE).return_response_object()
         else:
@@ -55,26 +58,37 @@ class Authentication(BaseClass):
 
     @sync_to_async
     def create_a_new_user(self, email, hash_pass, name, language, salt, status):
-        return User.objects.create(Username=email, Password=hash_pass, DisplayName=name, Language=language,
-                                   Salt=salt, Status=status)
+        user_= Users.objects.create(Username=email, Password=hash_pass, DisplayName=name, Language=language,
+                                   Salt=salt, Status=status, UserId=uuid.uuid4())
+        print (user_)
+        return user_
 
     @sync_to_async
     def create_user_role_entries(self, user):
         roles_ = RolesRoutesMap.objects.filter(RoleId__FullName='User')
-        user_role_map = [UsersRolesMap(UserId=user, RoleRouteMapId=x, Status=True) for x in roles_]
-        UsersRolesMap.objects.bulk_create(user_role_map)
+        # user_role_map = [UsersRolesMap(UserId=user, RoleRouteMapId=x, Status=True) for x in roles_]
 
+
+        # print (roles_)
+        for x in roles_:
+            try:
+                UsersRolesMap.objects.create(UserId=user, RoleRouteMapId=x, Status=True)
+            except Exception as e:
+                print (e)
+        # UsersRolesMap.objects.bulk_create(user_role_map)
+
+    @DRequests.rest_api_call(allowed_method_list=['POST'])
     async def register(self, request):
         data = json.loads(request.body.decode('utf-8'))
         email = data['username'].strip().lower()
         password = data['password'].strip()
         confirm_password = data['confirmPassword'].strip()
         name = data['displayName'].strip()
-        language = data['language'].strip() if 'language' in data else 'eng'
+        language = data['language'].strip() if 'language' in data else 'en-US'
 
-        if not check_email_validation(email):
-            return FailureResponse(text='Please type valid email address',
-                                   status_code=BAD_REQUEST_CODE).return_response_object()
+        # if not check_email_validation(email):
+        #     return FailureResponse(text='Please type valid email address',
+        #                            status_code=BAD_REQUEST_CODE).return_response_object()
 
         if password != confirm_password:
             return FailureResponse(text='Password doesnt match',
@@ -82,15 +96,18 @@ class Authentication(BaseClass):
 
         email_exists = await self.check_email_exists(email)
         if email_exists:
-            return email_exists
+            return FailureResponse(text='Email/Contact already exists',
+                                   status_code=BAD_REQUEST_CODE).return_response_object()
 
         hash_pass, salt = Hashing().generate_password(password)
 
-        user_ = await self.create_a_new_user(email, hash_pass, name, language, salt, True)
+        user_ = await self.create_a_new_user(email, hash_pass, name, language, salt, True)      
+        print (type(user_))  
         await self.create_user_role_entries(user_)
 
         return SuccessResponse(data={}, text='User Created Successfully!').return_response_object()
 
+    @DRequests.rest_api_call(allowed_method_list=['PUT'], is_authenticated=False)
     async def logout(self, request):
         token_ = request.META['HTTP_AUTHORIZATION']
         await self.logout_token(token_)

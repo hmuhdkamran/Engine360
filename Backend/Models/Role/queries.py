@@ -1,6 +1,11 @@
+#
+#   Auther: H.Muhammad Kamran
+#   email: hmuhdkamran@gmail.com
+#   contact: +92 (313 / 333) 9112 845
+#
+
 from django.db import models
 import uuid
-
 
 class Queries(models.Model):
     QueryId = models.UUIDField(null=False, primary_key=True, db_column='QueryId')

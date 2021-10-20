@@ -77,7 +77,7 @@ class JWTClass:
     def decode_jwt_token(self, token, route_info=None):
         try:
             token = token[7:]
-            decoded_token = jwt.decode(token, key=self.SecretKey, algorithms=self.Algorithm, verify=False)
+            decoded_token = jwt.decode(token, key=self.SecretKey, algorithms=[self.Algorithm], verify=False)
             expiry_ = datetime.datetime.fromtimestamp(decoded_token['expiry'])
 
             roles = decoded_token['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/role']
@@ -93,11 +93,12 @@ class JWTClass:
                     if token in block_list_tokens:
                         return False
 
-                user = User.objects.get(
+                user = Users.objects.get(
                     UserId=decoded_token['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid'])
                 return user
             return False
         except Exception as e:
+            print (e)
             return False
 
     def decode_jwt_token_and_logout(self, token):
