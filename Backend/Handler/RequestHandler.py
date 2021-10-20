@@ -57,6 +57,7 @@ class DecoratorHandler:
             @wraps(view)
             async def wrapper(request, *args, **kwargs):
                 request_handler = RequestHandler(request)
+
                 if request.request.method in allowed_method_list:
                     if is_authenticated:
                         user_ = await self.authentication_level(request.request,claim, operation)
@@ -65,16 +66,19 @@ class DecoratorHandler:
                             try:
                                 response = await view(request, *args, **kwargs)
                             except Exception as e:
+                                print (e)
                                 await request_handler._exception_log_entry(e)
-                                response = self.return_http_response(FailureResponse().return_response_object())
+                                response = self.return_http_response(FailureResponse(text=str(e)).return_response_object())
                         else:
                             response = self.return_http_response(FailureResponse().unauthorized_object())
                     else:
+                        print ("not authenaticated flow rewiuts handler scenario")
                         try:
                             response = await view(request, *args, **kwargs)
                         except Exception as e:
-                            await request_handler._exception_log_entry(e)
-                            response = self.return_http_response(FailureResponse().return_response_object())
+                            print (e)
+                            # await request_handler._exception_log_entry(e)
+                            response = self.return_http_response(FailureResponse(text=str(e)).return_response_object())
                 else:
                     response = self.return_http_response(FailureResponse().method_not_allowed())
                 return response

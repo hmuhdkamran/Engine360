@@ -1,4 +1,5 @@
 import json
+from uuid import UUID
 
 from django.http import HttpResponse
 
@@ -27,7 +28,7 @@ class SuccessResponse:
 
     def return_response_object(self):
         try:
-            value_ = json.dumps(self.response_object())
+            value_ = json.dumps(self.response_object(),indent=4,default=uuid_convert)
             return respond(value_)
         except Exception as e:
             print (e)
@@ -41,6 +42,7 @@ class FailureResponse:
         self.status_code = status_code
 
     def response_object(self):
+        print (self.text)
         return {
             'data': {},
             'message': {
@@ -88,7 +90,7 @@ class FailureResponse:
             'data': {},
             'message': {
                 "messageTypeId": INTERNAL_SERVER_ERROR,
-                "text": 'Something went wrong',
+                "text": self.text,
                 "title": self.title
             }
         }
@@ -97,6 +99,9 @@ class FailureResponse:
     def return_response_object(self):
         return respond(json.dumps(self.response_object()))
 
+def uuid_convert(o):
+        if isinstance(o, UUID):
+            return o.hex        
 
 def respond(value):
     response = HttpResponse(value, content_type='application/json', status=200)

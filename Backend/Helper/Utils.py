@@ -1,4 +1,5 @@
 import re
+import datetime
 
 
 def check_email_validation(email):
@@ -7,3 +8,6 @@ def check_email_validation(email):
         return True
     else:
         return False
+
+def DTParse(obj):
+    return datetime.datetime.strftime(obj, "%d/%m/%y")
