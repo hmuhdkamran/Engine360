@@ -19,7 +19,7 @@ export class AuthenticationService extends StoreService {
       }
     };
 
-    return this.exec<IAccessToken>(Axios.post(GlobalConfig.uri.auth + 'login', credentials))
+    return this.exec<IAccessToken>(Axios.post('http://127.0.0.1:8000/api/' + 'login', credentials))
       .then(value => this.processPayload(value))
       .then(onSuccess);
   }

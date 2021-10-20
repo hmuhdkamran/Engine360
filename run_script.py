@@ -39,10 +39,10 @@ class BackendRunScript:
 
     def create_venv_if_not_exists(self):
         if not os.path.isdir(self.venv_path):
-            os.system("pip3 install virtualenv")
+            os.system("python -m pip install virtualenv")
             print(self.python_path)
             if self.python_path:
-                venv_path_cmd = "virtualenv --python=" + self.python_path + " " + self.venv_path
+                venv_path_cmd = "python -m virtualenv --python=" + self.python_path + " " + self.venv_path
             else:
                 venv_path_cmd = "virtualenv " + self.venv_path
             os.system(venv_path_cmd)
@@ -52,7 +52,7 @@ class BackendRunScript:
             venv_file_pip = os.path.join(self.venv_path, 'bin', 'pip3')
         else:
             venv_file_pip = os.path.join(self.venv_path, 'Scripts', 'pip')
-        os.system(venv_file_pip + ' install -r ' + self.requirement_path)
+        os.system(venv_file_pip + 'python -m install -r ' + self.requirement_path)
 
     def install_npm(self):
         os.chdir(self.frontend_path)

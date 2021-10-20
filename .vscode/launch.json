@@ -4,6 +4,8 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
+
         {
             "name": "Python: Django",
             "type": "python",
@@ -16,5 +18,5 @@
             "django": true
         }
     ],
-    "python.pythonPath": "C:/Users/hmuhd/AppData/Local/Programs/Python/Python38/python.exe"
+    "python.pythonPath": "C:/Users/burhan.ahamd/AppData/Local/Programs/Python/Python38/python.exe"
 }
