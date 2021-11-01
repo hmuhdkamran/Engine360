@@ -8,7 +8,6 @@ from Handler.RequestHandler import DecoratorHandler, FailureResponse, SuccessRes
 from Helper.Constants import *
 from Helper.Utils import *
 from Models.models import *
-
 import uuid
 
 
@@ -33,6 +32,7 @@ class Authentication(BaseClass):
     def get_user_token(self, user_):
         return JWTClass().create_user_session(user_)
 
+    @DRequests.rest_api_call(allowed_method_list=['POST'])
     async def login(self, request):
         data = json.loads(request.body.decode('utf-8'))
         email = data['username'].lower().strip()
@@ -42,7 +42,9 @@ class Authentication(BaseClass):
 
         if user_:
             if Hashing()._compare_stored_hash(password, user_.Salt, user_.Password):
+                print('functon hits')
                 data = await self.get_user_token(user_)
+                print('second func')
                 return SuccessResponse(data={"access_token": data, "expires_on": 360}).return_response_object()
 
         return FailureResponse(text='Username or password is incorrect.',

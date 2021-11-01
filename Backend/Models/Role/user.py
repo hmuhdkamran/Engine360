@@ -47,4 +47,4 @@ class User(AbstractBaseUser, models.Model):
     objects = UserManager()
 
     class Meta:
-        db_table = '"Role"."Users"'
+        db_table = '"Role"."User"'

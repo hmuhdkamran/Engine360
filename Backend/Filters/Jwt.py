@@ -59,7 +59,8 @@ class JWTClass:
     def generate_jwt_token(self, user, roles, time_information):
         data_ = self.get_jwt_model(user, roles, time_information)
         encoded_token = jwt.encode(data_, key=self.SecretKey, algorithm=self.Algorithm)
-        encoded_token = encoded_token.decode('utf-8')
+
+        # encoded_token = encoded_token.decode('utf-8')
         return encoded_token
 
     @staticmethod
